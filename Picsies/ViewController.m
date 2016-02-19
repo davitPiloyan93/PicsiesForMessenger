@@ -9,8 +9,15 @@
 #import "ViewController.h"
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
-@interface ViewController ()
+@interface ViewController () < SCPagingTabControllerDataSource,
+                                SCPagingTabControllerDelegate,
+                                StickersSliderDelegate,
+                                UIScrollViewDelegate>
 
+@property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
+@property (nonatomic,weak) SCPagingTabController *tabController;
+@property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
+@property (nonatomic) BOOL tabSelected;
 @end
 
 @implementation ViewController
