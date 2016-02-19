@@ -57,7 +57,8 @@
                     NSMutableArray *items = [[NSMutableArray alloc] init];
                     for (NSDictionary *item in dictionary[@"response"]) {
                         Sticker *sticker = [[Sticker alloc] initWithDictionary:item];
-                        if ([sticker hasTag:@"Picsies"]) {
+                        if ([sticker hasTag:@"Picsies"] && [sticker.shop_item_name_prefix isEqual:@"i_clipart"]) {
+                        
                             [arrayOfDictinaries addObject:item];
                             [items addObject:sticker];
                         }
