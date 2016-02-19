@@ -10,14 +10,16 @@
 #import "SCPagingTabController.h"
 #import "SCWrapperScrollView.h"
 #import "ContentController.h"
+#import "StickersSliderViewController.h"
 
 @interface ViewController () < SCPagingTabControllerDataSource,
                                 SCPagingTabControllerDelegate,
+                                StickersSliderDelegate,
                                 UIScrollViewDelegate>
 
 @property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
 @property (nonatomic,weak) SCPagingTabController *tabController;
-@property (nonatomic,weak) UIViewController *bannerControler;
+@property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
 @property (nonatomic) BOOL tabSelected;
 @end
 
@@ -25,8 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,15 +44,13 @@
     self.scrollViewWrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.scrollViewWrapper atIndex:0];
     
-    UIViewController* bannerControler = [[UIViewController alloc] init];
-    self.bannerControler = bannerControler;
-    [self addChildViewController:self.bannerControler];
-    [self.scrollViewWrapper addSubview:self.bannerControler.view];
-    self.bannerControler.view.frame = (CGRect){CGPointZero, self.view.bounds.size.width, 240 };
-    self.bannerControler.view.backgroundColor = [UIColor blueColor];
-
-    self.bannerControler.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [self.bannerControler didMoveToParentViewController:self];
+    StickersSliderViewController* stickerSliderVC = [[StickersSliderViewController alloc] init];
+    self.stickerSliderVC = stickerSliderVC;
+    self.stickerSliderVC.delegate = self;
+    self.stickerSliderVC.view.frame = (CGRect){CGPointZero, (CGSize){CGRectGetWidth(self.view.bounds), 240}};
+    [self addChildViewController:self.stickerSliderVC];
+    [self.scrollViewWrapper addSubview:self.stickerSliderVC.view];
+    [self.stickerSliderVC didMoveToParentViewController:self];
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
     
@@ -65,7 +63,7 @@
     self.tabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.tabController didMoveToParentViewController:self];
     
-    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.bannerControler.view.frame.size.height - 64,
+    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.stickerSliderVC.view.frame.size.height - 64,
                                                                     0, 0, 0);
     self.scrollViewWrapper.scrollContainerView = self.tabController.view;
     self.scrollViewWrapper.delegate = self;
@@ -125,7 +123,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    [self setNavigationBarBackgroundDependsOffset];
     
-    UIView* cover = self.bannerControler.view;
+    UIView* cover = self.stickerSliderVC.view;
     float offset = scrollView.contentOffset.y;
     float coverH = cover.bounds.size.height;
     if (offset <= 0) {
@@ -159,13 +157,12 @@
     [self.scrollViewWrapper setContentOffset:offset animated:YES];
 }
 
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
+    NSLog(@"index : %@", @(index));
+}
 
 - (void)dealloc {
     self.scrollViewWrapper.delegate = nil;
 }
-
-
-
-
 
 @end

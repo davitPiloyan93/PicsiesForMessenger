@@ -26,6 +26,8 @@
 		84A53D6A1C772845006CBF39 /* PicsiesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D681C772845006CBF39 /* PicsiesCell.xib */; };
 		C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */; };
 		C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */; };
+		C41D13B91C772D6B00FDE821 /* StickersSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */; };
+		C41D13BE1C772DB400FDE821 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13BD1C772DB400FDE821 /* iCarousel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,10 @@
 		84A53D681C772845006CBF39 /* PicsiesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicsiesCell.xib; sourceTree = "<group>"; };
 		C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = Frameworks/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickersSliderViewController.h; sourceTree = "<group>"; };
+		C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickersSliderViewController.m; sourceTree = "<group>"; };
+		C41D13BC1C772DB400FDE821 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		C41D13BD1C772DB400FDE821 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,10 @@
 				84A53D231C76FA52006CBF39 /* AppDelegate.m */,
 				84A53D251C76FA52006CBF39 /* ViewController.h */,
 				84A53D261C76FA52006CBF39 /* ViewController.m */,
+				C41D13BC1C772DB400FDE821 /* iCarousel.h */,
+				C41D13BD1C772DB400FDE821 /* iCarousel.m */,
+				C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */,
+				C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */,
 				84A53D5E1C7721D5006CBF39 /* ContentController.h */,
 				84A53D5F1C7721D5006CBF39 /* ContentController.m */,
 				84A53D601C7721D5006CBF39 /* ContentController.xib */,
@@ -239,6 +249,7 @@
 				84A53D5D1C771E2E006CBF39 /* SCWrapperScrollView.m in Sources */,
 				84A53D4C1C770C0A006CBF39 /* SCPagingTabController.m in Sources */,
 				84A53D271C76FA52006CBF39 /* ViewController.m in Sources */,
+				C41D13BE1C772DB400FDE821 /* iCarousel.m in Sources */,
 				84A53D651C7724EA006CBF39 /* UIViewController+SCAdditions.m in Sources */,
 				84A53D5A1C771CCB006CBF39 /* SCPagingViewController.m in Sources */,
 				84A53D241C76FA52006CBF39 /* AppDelegate.m in Sources */,
@@ -246,6 +257,7 @@
 				84A53D611C7721D5006CBF39 /* ContentController.m in Sources */,
 				84A53D211C76FA50006CBF39 /* main.m in Sources */,
 				84A53D571C771018006CBF39 /* SCTabBar.m in Sources */,
+				C41D13B91C772D6B00FDE821 /* StickersSliderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
