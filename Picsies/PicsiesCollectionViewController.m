@@ -6,43 +6,57 @@
 //  Copyright © 2016 Picsies. All rights reserved.
 //
 
-#import "ContentController.h"
+#import "PicsiesCollectionViewController.h"
 #import "PicsiesCell.h"
+#import "StickersClient.h"
+#import "Sticker.h"
 
 #define offset 4
 #define itemsPerRow 2
 #define padding 16
 
-@interface ContentController ()
+@interface PicsiesCollectionViewController ()
 
-@property (nonatomic) NSMutableArray *items;
+@property (nonatomic) NSMutableArray *itemsIconsUrls;
 
 @end
 
-@implementation ContentController
+@implementation PicsiesCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.items = [[NSMutableArray alloc] init];
-    for (int i = 0 ; i<20; i++) {
-        [self.items addObject:@(i)];
-    }
-    
+    [self setupShopItemIconsUrls];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PicsiesCell class]) bundle:nil] forCellWithReuseIdentifier:@"picsiesCellIdentifier"];
-    // Do any additional setup after loading the view from its nib.
+}
+
+
+-(void)setupShopItemIconsUrls {
+    self.itemsIconsUrls = [[NSMutableArray alloc] initWithCapacity:10];
+    if (self.sticker.shop_item_preview_count > 0) {
+        int itemIconsCount = self.sticker.shop_item_preview_count;
+        NSString* itemIconBaseUrl = self.sticker.shopItemIconUrl;
+        for (int i = 1; i < itemIconsCount+1; i++) {
+            NSString* itemIconUrl = [NSString stringWithFormat:@"%@%d.png", itemIconBaseUrl, i];
+            [self.itemsIconsUrls addObject:itemIconUrl];
+        }
+    }
 }
 
 
 #pragma mark UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.items.count;
+    return self.itemsIconsUrls.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
+    
+
+    [cell setData:self.itemsIconsUrls[indexPath.row]];
+    
     return cell;
 }
 

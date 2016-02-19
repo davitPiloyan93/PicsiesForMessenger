@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
+#import "Sticker.h"
 
 @interface AppDelegate () <FBSDKMessengerURLHandlerDelegate>
 
@@ -20,6 +20,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     _messengerUrlHandler = [[FBSDKMessengerURLHandler alloc] init];

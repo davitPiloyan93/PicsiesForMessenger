@@ -12,9 +12,22 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HeE-LG-PwJ">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                    </imageView>
+                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="1" green="0.43921568630000002" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="HeE-LG-PwJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8vc-5b-8cg"/>
+                <constraint firstAttribute="trailing" secondItem="HeE-LG-PwJ" secondAttribute="trailing" id="K87-et-aWe"/>
+                <constraint firstItem="HeE-LG-PwJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YU4-nM-hvh"/>
+                <constraint firstAttribute="bottom" secondItem="HeE-LG-PwJ" secondAttribute="bottom" id="sN4-RG-xI1"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="HeE-LG-PwJ" id="Bvx-DA-CXI"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>
