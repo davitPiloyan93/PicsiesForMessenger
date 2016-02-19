@@ -12,4 +12,6 @@
 
 - (void)setData:(NSURL *)imageURL;
 
+- (UIImageView *)cellImageView;
+
 @end

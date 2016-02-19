@@ -21,9 +21,11 @@
 }
 
 - (void)setData:(NSURL *)imageURL {
-    
     [self.imageView sd_setImageWithURL:imageURL];
+}
 
+- (UIImageView *)cellImageView {
+    return self.imageView;
 }
 
 @end

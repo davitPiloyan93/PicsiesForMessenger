@@ -24,6 +24,14 @@
 
 
 
+@property (nonatomic,weak) UIView *PopupView;
+
+@property (nonatomic) UIButton *fbbutton;
+
+@property (nonatomic) PicsiesCell *currentSelectedCell;
+
+
+
 @end
 
 @implementation PicsiesCollectionViewController
@@ -82,9 +90,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
-    
-
     [cell setData:self.itemsIconsUrls[indexPath.row]];
+    
+//    if (cell != self.currentSelectedCell) {
+//        self.PopupView.hidden = YES;
+//        self.fbbutton.hidden = YES;
+//    } else {
+//        self.PopupView.hidden = NO;
+//        self.fbbutton.hidden = NO;
+//    }
     
     return cell;
 }
