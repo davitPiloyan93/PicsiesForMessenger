@@ -29,7 +29,7 @@
 }
 
 - (void)createImages {
-    self.stickerItems = @[@"testImage1", @"testImage1", @"testImage1", @"testImage1"];
+    self.stickerItems = @[@"testImage1", @"testImage1", @"testImage1", @"testImage1",@"testImage1", @"testImage1", @"testImage1", @"testImage1", @"testImage1"];
 }
 
 - (void)configCarousel {

@@ -49,6 +49,8 @@
 
 @property (nonatomic, weak) UIViewController* currentController;
 
+- (void)setVisibleIndex:(NSUInteger)visibleIndex animated:(BOOL)animated;
+
 - (id)initWithTabTitles:(NSArray*)titles;
 
 - (void)reload;

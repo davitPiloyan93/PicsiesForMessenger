@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 #import "SCPagingTabController.h"
 #import "SCWrapperScrollView.h"
 #import "PicsiesCollectionViewController.h"
@@ -19,7 +20,7 @@
                                 UIScrollViewDelegate>
 
 @property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
-@property (nonatomic,weak) SCPagingTabController *tabController;
+@property (nonatomic,weak) SCPagingTabController *pagingTabController;
 @property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
 @property (nonatomic) BOOL tabSelected;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
@@ -79,18 +80,18 @@
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
     
-    self.tabController = tabController;
-    self.tabController.dataSource = self;
-    self.tabController.delegate = self;
-    [self addChildViewController:self.tabController];
-    [self.view addSubview:self.tabController.view];
-    self.tabController.view.frame = self.view.bounds;
-    self.tabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.tabController didMoveToParentViewController:self];
+    self.pagingTabController = tabController;
+    self.pagingTabController.dataSource = self;
+    self.pagingTabController.delegate = self;
+    [self addChildViewController:self.pagingTabController];
+    [self.view addSubview:self.pagingTabController.view];
+    self.pagingTabController.view.frame = self.view.bounds;
+    self.pagingTabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.pagingTabController didMoveToParentViewController:self];
     
     self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.stickerSliderVC.view.frame.size.height,
                                                                     0, 0, 0);
-    self.scrollViewWrapper.scrollContainerView = self.tabController.view;
+    self.scrollViewWrapper.scrollContainerView = self.pagingTabController.view;
     self.scrollViewWrapper.delegate = self;
 }
 
@@ -141,8 +142,33 @@
     }
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self stoppedScrolling];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self stoppedScrolling];
+    }
+}
+
+- (void)stoppedScrolling {
+    return; //TODO
+    
+    float newOffsetY = self.scrollViewWrapper.contentInset.top;
+    if (self.scrollViewWrapper.contentOffset.y > self.scrollViewWrapper.scrollContainerInsets.top / 2) {
+        newOffsetY = self.scrollViewWrapper.scrollContainerInsets.top + 1; //TODO
+    }
+    CGPoint offset = self.scrollViewWrapper.contentOffset;
+    offset.y = newOffsetY;
+    [self.scrollViewWrapper setContentOffset:offset animated:YES];
+}
+
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
     NSLog(@"index : %@", @(index));
+    self.tabSelected = YES;
+    [self.pagingTabController setVisibleIndex:index animated:NO];
 }
 
 - (void)dealloc {
