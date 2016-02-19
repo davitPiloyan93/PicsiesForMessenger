@@ -12,6 +12,7 @@
 #import "Sticker.h"
 #import "PicsiesPreviewView.h"
 #import "UIImageView+WebCache.h"
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 #define offset 4
 
@@ -22,13 +23,11 @@
 @property (nonatomic) NSMutableArray *itemsIconsUrls;
 @property (nonatomic) PicsiesPreviewView *stickerPreviewView;
 
-
-
 @property (nonatomic,weak) UIView *PopupView;
 
 @property (nonatomic) UIButton *fbbutton;
 
-@property (nonatomic) PicsiesCell *currentSelectedCell;
+@property (nonatomic) NSIndexPath *currentIndexPath;
 
 
 
@@ -39,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupShopItemIconsUrls];
-    
+ 
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PicsiesCell class]) bundle:nil] forCellWithReuseIdentifier:@"picsiesCellIdentifier"];
     
@@ -58,8 +57,6 @@
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];;
     self.stickerPreviewView = [[PicsiesPreviewView alloc] initWithFrame:window.bounds];
     [window addSubview:self.stickerPreviewView];
-    
-//    self.stickerPreviewView.bottomPadding = CGRectGetHeight(window.bounds) +500 - [self.collectionView convertPoint:CGPointZero toCoordinateSpace:window].y;
     self.stickerPreviewView.hidden = YES;
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPressHandler:)];
@@ -92,15 +89,18 @@
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
     [cell setData:self.itemsIconsUrls[indexPath.row]];
     
-//    if (cell != self.currentSelectedCell) {
-//        self.PopupView.hidden = YES;
-//        self.fbbutton.hidden = YES;
-//    } else {
-//        self.PopupView.hidden = NO;
-//        self.fbbutton.hidden = NO;
-//    }
+    if (self.currentIndexPath.row == indexPath.row) {
+        [self showViews:YES];
+    } else {
+        [self showViews:NO];
+    }
     
     return cell;
+}
+
+- (void)showViews:(BOOL)show {
+    self.PopupView.hidden = show;
+    self.fbbutton.hidden = show;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,16 +124,8 @@
             if (idx != position) {
                 position = idx;
                 id detailItem = self.itemsIconsUrls[idx];
-//                if ([detailItem isKindOfClass:[GiphyImage class]]) {
-//                    self.stickerPreviewView.imageView.image = nil;
-//                    GiphyImage *giphyImage = (GiphyImage *)detailItem;
-//                    [self.stickerPreviewView.imageView sd_setImageWithURL:[NSURL URLWithString:giphyImage.originalURL]];
-//                } else {
-//                    UIImage *image = [[UIImage alloc] initWithContentsOfFile:detailItem];
-//                    self.stickerPreviewView.imageView.image = image;
                 
                 [self.stickerPreviewView.imageView sd_setImageWithURL:detailItem];
-//                }
             }
         }
     } else {
@@ -143,11 +135,53 @@
     }
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.currentIndexPath = indexPath;
+    PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (self.PopupView) {
+        UIView *fbbutton = self.PopupView.superview.subviews[2];
+        [fbbutton removeFromSuperview];
+        [self.PopupView removeFromSuperview];
+    }
+    UIView *popUpView = [[UIView alloc]initWithFrame:currentSelectedCell.bounds];
+    self.PopupView = popUpView;
+    popUpView.backgroundColor = [UIColor whiteColor];
+    popUpView.alpha = .7;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closePopup:)];
+    [popUpView addGestureRecognizer:tapGesture];
+    
+    [currentSelectedCell addSubview:popUpView];
+    CGFloat buttonWidth = 50;
+    UIButton *button = [FBSDKMessengerShareButton circularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue
+                                                                    width:buttonWidth];
+    self.fbbutton = button;
+    [button addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    button.center = CGPointMake(CGRectGetWidth(currentSelectedCell.frame) / 2.f, CGRectGetHeight(currentSelectedCell.frame) / 2.f);
+    [currentSelectedCell addSubview:button];
+    return YES;
+}
+
+- (void)shareButtonPressed:(UIButton *)fbButton {
+    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
+    options.renderAsSticker = YES;
+    [FBSDKMessengerSharer shareImage:[((PicsiesCell *)fbButton.superview) cellImageView].image withOptions:options];
+    [self.PopupView removeFromSuperview];
+    [fbButton removeFromSuperview];
+    self.fbbutton = nil;
+}
+
+
+- (void)closePopup:(UITapGestureRecognizer *)tapGesture {
+//    UIView *fbbutton = tapGesture.view.superview.subviews[2];
+    [self.fbbutton removeFromSuperview];
+    self.fbbutton = nil;
+    [tapGesture.view removeFromSuperview];
+}
+
 - (void)dealloc {
     if (self.stickerPreviewView) {
         [self.stickerPreviewView removeFromSuperview];
     }
 }
-
 
 @end
