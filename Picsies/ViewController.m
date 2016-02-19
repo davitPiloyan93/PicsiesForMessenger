@@ -54,6 +54,8 @@
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
     
+//    tabController.view.backgroundColor = [UIColor grayColor];
+    
     self.tabController = tabController;
     self.tabController.dataSource = self;
     self.tabController.delegate = self;

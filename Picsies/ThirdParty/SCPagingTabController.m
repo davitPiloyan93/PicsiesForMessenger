@@ -48,7 +48,7 @@
     
     tabBarH = (self.titles.count <= 1) ? 0 : tabBarH;
     
-    CGRect tabBarFrame = CGRectMake(0, 64, self.view.bounds.size.width, tabBarH);
+    CGRect tabBarFrame = CGRectMake(0, 0, self.view.bounds.size.width, tabBarH);
     
     SCTabBar* tabBar = [[SCTabBar alloc] initWithFrame:tabBarFrame tabTitles:self.titles];
                            
