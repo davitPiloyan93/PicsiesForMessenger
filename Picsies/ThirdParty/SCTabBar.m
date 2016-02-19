@@ -114,7 +114,7 @@
     if (self) {
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
-        self.font = [UIFont boldSystemFontOfSize:13];
+        self.font = [UIFont boldSystemFontOfSize:16];
         
         UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView = scrollView;
@@ -184,7 +184,7 @@
     float tabWidth = MIN(MAX_TAB_WIDTH, MAX(MIN_TAB_WIDTH, maxTitleWidth));
     float preferredWidth = self.bounds.size.width / self.tabs.count;
     
-    _tabWidth = MAX(preferredWidth, tabWidth) - 60.f;
+    _tabWidth = MAX(preferredWidth, tabWidth) + 10;
 }
 
 - (void)relayout {
