@@ -10,7 +10,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
-
 @interface AppDelegate () <FBSDKMessengerURLHandlerDelegate>
 
 @property(nonatomic) FBSDKMessengerURLHandler *messengerUrlHandler;

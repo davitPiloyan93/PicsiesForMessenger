@@ -33,6 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    
+//    UIButton *button = [FBSDKMessengerShareButton rectangularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue];
+//    [button addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button setTitle:@"Send" forState:UIControlStateNormal];
+//    [self.view addSubview:button];
+//    button.center = self.view.center;
     
     self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.indicatorView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
@@ -52,6 +58,15 @@
         }
     }];
     
+    //[FBSDKMessengerSharer messengerPlatformCapabilities] & FBSDKMessengerPlatformCapabilityImage)
+    //NSLog(@"Error - Messenger platform capabilities don't include image sharing");
+}
+
+-(void)sendAction {
+    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
+    options.renderAsSticker = YES;
+    
+    [FBSDKMessengerSharer shareImage:[UIImage imageNamed:@"test_icon"] withOptions:options];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
