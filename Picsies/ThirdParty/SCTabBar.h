@@ -34,6 +34,6 @@
 
 - (id)initWithFrame:(CGRect)frame tabTitles:(NSArray*)tabTitles;
 
-- (void)setProgress:(float)progress;
+- (void)setProgress:(float)progress fromTapping:(BOOL)fromTapping;
 
 @end

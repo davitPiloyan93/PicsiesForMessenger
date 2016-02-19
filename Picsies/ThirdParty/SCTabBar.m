@@ -46,7 +46,7 @@
     if (self) {
         self.originalImage = tabData.image;
         [self setTitle:tabData.title forState:UIControlStateNormal];
-        [self setColor:[UIColor colorWithWhite:137.0 / 255.0 alpha:1]];
+        [self setColor:[UIColor blackColor]];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         
         self.titleLabel.numberOfLines = 1;
@@ -113,8 +113,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.clipsToBounds = YES;
-        self.backgroundColor = [UIColor blackColor];
-        self.font = [UIFont boldSystemFontOfSize:12];
+        self.backgroundColor = [UIColor whiteColor];
+        self.font = [UIFont boldSystemFontOfSize:13];
         
         UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView = scrollView;
@@ -124,7 +124,7 @@
         
         UIView* underLineView = [UIView new];
         self.underlineView = underLineView;
-        self.underlineView.backgroundColor = [UIColor orangeTintColor];
+        self.underlineView.backgroundColor = [UIColor redTintColor];
         self.underlineView.userInteractionEnabled = NO;
         [self.scrollView addSubview:self.underlineView];
         
@@ -143,7 +143,7 @@
 
 - (void)selectTabAtIndex:(NSUInteger)index {
     _selectedTab = self.tabs[index];
-    [self setProgress:index];
+    [self setProgress:index fromTapping:YES];
     [self.scrollView scrollRectToVisible:_selectedTab.frame animated:YES];
 }
 
@@ -203,7 +203,7 @@
     self.scrollView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     self.scrollView.contentSize = contentSize;
     
-    [self setProgress:_progress];
+    [self setProgress:_progress fromTapping:YES];
 }
 
 - (void)updateTabs {
@@ -221,7 +221,7 @@
     [self.scrollView bringSubviewToFront:self.underlineView];
 }
 
-- (void)setProgress:(float)progress {
+- (void)setProgress:(float)progress fromTapping:(BOOL)fromTapping {
     _progress = progress;
     float x = self.tabWidth * progress;
     float y = self.scrollView.bounds.size.height - 3;
@@ -230,14 +230,16 @@
     self.underlineView.frame = CGRectMake(x, y, w, h);
     
     //tab title colors
-    
+    if (!fromTapping) {
+        return;
+    }
     SCTabBarItem* fromItem = nil;
     SCTabBarItem* toItem = nil;
     
     int fromIndex = ceil(progress);
     int toIndex = floor(progress);
     
-    UIColor* defaultColor = [UIColor colorWithWhite:137.0 / 255.0 alpha:1];
+    UIColor* defaultColor = [UIColor blackColor];
     
     if (fromIndex >= 0 && fromIndex < self.tabs.count) {
         fromItem = self.tabs[fromIndex];
@@ -255,15 +257,8 @@
         }
     }
     
-    float startWhite = 137;
-    float endWhite = 255;
-    
-    float whiteDiff = (endWhite - startWhite);
-    float relativeProgress = progress - floor(progress);
-    float colorProgress = whiteDiff * relativeProgress;
-    
-    UIColor* fromColor = [UIColor colorWithWhite:(startWhite + colorProgress) / 255 alpha:1];
-    UIColor* toColor = [UIColor colorWithWhite:(endWhite - colorProgress) / 255 alpha:1];
+    UIColor* fromColor = defaultColor;
+    UIColor* toColor = [UIColor colorWithRed:237.f/255.f green:96.f/255.f blue:82.f/255.f alpha:1];
     
     [fromItem setColor:fromColor];
     [toItem setColor:toColor];
