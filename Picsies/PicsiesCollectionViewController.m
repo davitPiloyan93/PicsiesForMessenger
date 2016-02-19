@@ -10,6 +10,7 @@
 #import "PicsiesCell.h"
 #import "StickersClient.h"
 #import "Sticker.h"
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 #define offset 4
 #define itemsPerRow 3
@@ -18,6 +19,14 @@
 @interface PicsiesCollectionViewController ()
 
 @property (nonatomic) NSMutableArray *itemsIconsUrls;
+
+@property (nonatomic,weak) UIView *PopupView;
+
+@property (nonatomic) UIButton *fbbutton;
+
+@property (nonatomic) PicsiesCell *currentSelectedCell;
+
+
 
 @end
 
@@ -53,9 +62,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
-    
-
     [cell setData:self.itemsIconsUrls[indexPath.row]];
+    
+//    if (cell != self.currentSelectedCell) {
+//        self.PopupView.hidden = YES;
+//        self.fbbutton.hidden = YES;
+//    } else {
+//        self.PopupView.hidden = NO;
+//        self.fbbutton.hidden = NO;
+//    }
     
     return cell;
 }
@@ -65,5 +80,45 @@
     return CGSizeMake(itemSide, itemSide);
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (self.PopupView) {
+        UIView *fbbutton = self.PopupView.superview.subviews[2];
+        [fbbutton removeFromSuperview];
+        [self.PopupView removeFromSuperview];
+    }
+    UIView *popUpView = [[UIView alloc]initWithFrame:self.currentSelectedCell.bounds];
+    self.PopupView = popUpView;
+    popUpView.backgroundColor = [UIColor whiteColor];
+    popUpView.alpha = .7;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closePopup:)];
+    [popUpView addGestureRecognizer:tapGesture];
+    
+    [self.currentSelectedCell addSubview:popUpView];
+    CGFloat buttonWidth = 50;
+    UIButton *button = [FBSDKMessengerShareButton circularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue
+                                                                    width:buttonWidth];
+    self.fbbutton = button;
+    [button addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    button.center = CGPointMake(CGRectGetWidth(self.currentSelectedCell.frame) / 2.f, CGRectGetHeight(self.currentSelectedCell.frame) / 2.f);
+    [self.currentSelectedCell addSubview:button];
+    return YES;
+}
+
+- (void)shareButtonPressed:(UIButton *)fbButton {
+    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
+    options.renderAsSticker = YES;
+    [FBSDKMessengerSharer shareImage:[((PicsiesCell *)fbButton.superview) cellImageView].image withOptions:options];
+    [self.PopupView removeFromSuperview];
+    [fbButton removeFromSuperview];
+    self.fbbutton = nil;
+}
+
+- (void)closePopup:(UITapGestureRecognizer *)tapGesture {
+//    UIView *fbbutton = tapGesture.view.superview.subviews[2];
+    [self.fbbutton removeFromSuperview];
+    self.fbbutton = nil;
+    [tapGesture.view removeFromSuperview];
+}
 
 @end
