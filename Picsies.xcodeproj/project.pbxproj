@@ -44,7 +44,6 @@
 		84A53DAE1C77A4BF006CBF39 /* PicsiesPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53DAD1C77A4BF006CBF39 /* PicsiesPreviewView.m */; };
 		C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */; };
 		C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */; };
-		C21EA6601C776843004587F8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65F1C776843004587F8 /* Bolts.framework */; };
 		C41D13B91C772D6B00FDE821 /* StickersSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */; };
 		C41D13BE1C772DB400FDE821 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13BD1C772DB400FDE821 /* iCarousel.m */; };
 /* End PBXBuildFile section */
@@ -120,7 +119,6 @@
 		84A53DAD1C77A4BF006CBF39 /* PicsiesPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicsiesPreviewView.m; sourceTree = "<group>"; };
 		C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = Frameworks/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		C21EA65F1C776843004587F8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickersSliderViewController.h; sourceTree = "<group>"; };
 		C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickersSliderViewController.m; sourceTree = "<group>"; };
 		C41D13BC1C772DB400FDE821 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C21EA6601C776843004587F8 /* Bolts.framework in Frameworks */,
 				C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */,
 				C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */,
 			);
@@ -287,7 +284,6 @@
 		C21EA6581C76FF7A004587F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C21EA65F1C776843004587F8 /* Bolts.framework */,
 				C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */,
 				C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */,
 			);
