@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 #import "SCPagingTabController.h"
 #import "SCWrapperScrollView.h"
 #import "ContentController.h"
@@ -27,6 +28,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    
+//    UIButton *button = [FBSDKMessengerShareButton rectangularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue];
+//    [button addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button setTitle:@"Send" forState:UIControlStateNormal];
+//    [self.view addSubview:button];
+//    button.center = self.view.center;
+    
+    //[FBSDKMessengerSharer messengerPlatformCapabilities] & FBSDKMessengerPlatformCapabilityImage)
+    //NSLog(@"Error - Messenger platform capabilities don't include image sharing");
+}
+
+-(void)sendAction {
+    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
+    options.renderAsSticker = YES;
+    
+    [FBSDKMessengerSharer shareImage:[UIImage imageNamed:@"test_icon"] withOptions:options];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,6 +126,29 @@
         cover.transform = CGAffineTransformMakeScale(s, s);
         cover.center = CGPointMake(cover.center.x, cover.bounds.size.height / 2 + (cover.bounds.size.height - cover.frame.size.height) / 2);
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self stoppedScrolling];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self stoppedScrolling];
+    }
+}
+
+- (void)stoppedScrolling {
+    return; //TODO
+    
+    float newOffsetY = self.scrollViewWrapper.contentInset.top;
+    if (self.scrollViewWrapper.contentOffset.y > self.scrollViewWrapper.scrollContainerInsets.top / 2) {
+        newOffsetY = self.scrollViewWrapper.scrollContainerInsets.top + 1; //TODO
+    }
+    CGPoint offset = self.scrollViewWrapper.contentOffset;
+    offset.y = newOffsetY;
+    [self.scrollViewWrapper setContentOffset:offset animated:YES];
 }
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
