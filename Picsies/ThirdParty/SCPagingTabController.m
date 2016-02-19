@@ -27,9 +27,10 @@
 @implementation SCPagingTabController
 
 -(void)setTitles:(NSArray *)titles {
-    _titles = [titles mapObjectsWithBlock:^id(NSString *obj, NSUInteger idx) {
-        return [obj uppercaseString];
-    }];
+    _titles = titles;
+//    _titles = [titles mapObjectsWithBlock:^id(NSString *obj, NSUInteger idx) {
+//        return [obj uppercaseString];
+//    }];
 }
 
 - (id)initWithTabTitles:(NSArray*)titles {
