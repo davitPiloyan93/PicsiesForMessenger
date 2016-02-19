@@ -73,7 +73,7 @@
     StickersSliderViewController* stickerSliderVC = [[StickersSliderViewController alloc] init];
     self.stickerSliderVC = stickerSliderVC;
     self.stickerSliderVC.delegate = self;
-    self.stickerSliderVC.view.frame = (CGRect){CGPointZero, (CGSize){CGRectGetWidth(self.view.bounds), 240}};
+    self.stickerSliderVC.view.frame = (CGRect){CGPointZero, (CGSize){CGRectGetWidth(self.view.bounds), 188}};
     [self addChildViewController:self.stickerSliderVC];
     [self.scrollViewWrapper addSubview:self.stickerSliderVC.view];
     [self.stickerSliderVC didMoveToParentViewController:self];

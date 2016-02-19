@@ -15,7 +15,7 @@
 + (UIColor *)lightBlueTintColor;
 + (UIColor *)lightGrayTableBGColor;
 + (UIColor *)lightOrangeColor;
-+ (UIColor *)orangeTintColor;
++ (UIColor *)redTintColor;
 + (UIColor *)lightBlueHighlightColor;
 + (UIColor *)transparentBlackColor;
 

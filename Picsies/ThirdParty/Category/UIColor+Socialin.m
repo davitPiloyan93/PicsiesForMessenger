@@ -36,10 +36,10 @@
                            alpha: 1.0];
 }
 
-+ (UIColor *)orangeTintColor {
-    return [UIColor colorWithRed:253 / 255.0
-                           green:89 / 255.0
-                            blue:48 / 255.0
++ (UIColor *)redTintColor {
+    return [UIColor colorWithRed:237.0 / 255.0
+                           green:96 / 255.0
+                            blue:82 / 255.0
                            alpha:1];
 }
 

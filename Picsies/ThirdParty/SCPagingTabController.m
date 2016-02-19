@@ -124,7 +124,7 @@
 }
 
 - (void)pagingViewController:(SCPagingViewController *)pagingViewController didUpdateTransitionProgress:(float)progress {
-    [self.tabBar setProgress:progress];
+    [self.tabBar setProgress:progress fromTapping:NO];
 }
 
 - (void)tabBar:(SCTabBar *)tabBar didSelectTabAtIndex:(NSUInteger)index byUser:(BOOL)byUser {
