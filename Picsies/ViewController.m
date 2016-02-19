@@ -19,7 +19,7 @@
                                 UIScrollViewDelegate>
 
 @property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
-@property (nonatomic,weak) SCPagingTabController *tabController;
+@property (nonatomic,weak) SCPagingTabController *pagingTabController;
 @property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
 @property (nonatomic) BOOL tabSelected;
 @end
@@ -71,20 +71,18 @@
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
     
-//    tabController.view.backgroundColor = [UIColor grayColor];
+    self.pagingTabController = tabController;
+    self.pagingTabController.dataSource = self;
+    self.pagingTabController.delegate = self;
+    [self addChildViewController:self.pagingTabController];
+    [self.view addSubview:self.pagingTabController.view];
+    self.pagingTabController.view.frame = self.view.bounds;
+    self.pagingTabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.pagingTabController didMoveToParentViewController:self];
     
-    self.tabController = tabController;
-    self.tabController.dataSource = self;
-    self.tabController.delegate = self;
-    [self addChildViewController:self.tabController];
-    [self.view addSubview:self.tabController.view];
-    self.tabController.view.frame = self.view.bounds;
-    self.tabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.tabController didMoveToParentViewController:self];
-    
-    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.stickerSliderVC.view.frame.size.height - 64,
+    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.stickerSliderVC.view.frame.size.height,
                                                                     0, 0, 0);
-    self.scrollViewWrapper.scrollContainerView = self.tabController.view;
+    self.scrollViewWrapper.scrollContainerView = self.pagingTabController.view;
     self.scrollViewWrapper.delegate = self;
 }
 
@@ -93,34 +91,13 @@
     for (int i = 0; i < 10; i++) {
         [titles addObject:[NSString stringWithFormat:@"Name%@",@(i)]];
     }
-//    for (SCSocialinShopTabItem *shopTab in [SCSocialin sharedInstance].socialin_props.shopTabs) {
-//        if ((shopTab.tag && ![shopTab.tag isEqualToString:@""]) ||
-//            [shopTab.price isEqualToString:@"free"] ||
-//            [shopTab.price isEqualToString:@"paid"] ||
-//            (shopTab.tags && shopTab.tags.count > 0)) {
-//            [titles addObject:shopTab.title];
-//        }
-//    }
+
     return [titles copy];
 }
 
 - (UIViewController *)pagingTabController:(SCPagingTabController *)pagingViewController
                     viewControllerAtIndex:(NSUInteger)index {
     ContentController* collection = [[ContentController alloc] init];
-    
-//    SCSocialinShopTabItem *tabItem = [SCSocialin sharedInstance].socialin_props.shopTabs[index];
-//    
-//    if (tabItem.tags) {
-//        collection = [self shopCategoryController:tabItem];
-//    } else if ([tabItem.price isEqualToString:@"free"]) {
-//        collection = [SCShopItemsBaseCollection createShopFreeItemsViewController];
-//    } else if ([tabItem.price isEqualToString:@"paid"]) {
-//        collection = [SCShopItemsBaseCollection createShopPaidItemsViewController];
-//    } else if ([tabItem.tag isEqualToString:@"installed"]) {
-//        collection = [SCShopItemsBaseCollection createShopInstalledViewController];
-//    } else if (tabItem.tag != nil && ![tabItem.tag isEqualToString:@""] ) {
-//        collection = [SCNetViewController shopItemByTag:tabItem.tag sourceTab:tabItem.tag source:nil];
-//    }
     return collection;
 }
 
@@ -140,8 +117,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [self setNavigationBarBackgroundDependsOffset];
-    
     UIView* cover = self.stickerSliderVC.view;
     float offset = scrollView.contentOffset.y;
     float coverH = cover.bounds.size.height;
@@ -178,6 +153,8 @@
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
     NSLog(@"index : %@", @(index));
+    self.tabSelected = YES;
+    [self.pagingTabController setVisibleIndex:index animated:NO];
 }
 
 - (void)dealloc {

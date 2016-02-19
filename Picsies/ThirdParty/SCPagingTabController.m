@@ -136,4 +136,8 @@
     }
 }
 
+- (void)setVisibleIndex:(NSUInteger)visibleIndex animated:(BOOL)animated {
+    self.pagingViewController.visibleIndex = visibleIndex;
+}
+
 @end
