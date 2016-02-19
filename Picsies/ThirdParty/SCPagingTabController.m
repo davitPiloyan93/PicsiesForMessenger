@@ -45,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    float tabBarH = (NO) ? 44 : 36;
+    float tabBarH = 40;
     
     tabBarH = (self.titles.count <= 1) ? 0 : tabBarH;
     

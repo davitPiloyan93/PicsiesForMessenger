@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
+#import "ViewController.h"
 
 @interface AppDelegate () <FBSDKMessengerURLHandlerDelegate>
 
@@ -26,6 +27,7 @@
     _messengerUrlHandler = [[FBSDKMessengerURLHandler alloc] init];
     _messengerUrlHandler.delegate = self;
 
+    
     return YES;
 }
 

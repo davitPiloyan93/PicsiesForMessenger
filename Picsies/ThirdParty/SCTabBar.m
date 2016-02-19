@@ -229,6 +229,10 @@
     float h = 3;
     self.underlineView.frame = CGRectMake(x, y, w, h);
     
+    float offsetX = -(self.bounds.size.width - self.tabWidth) / 2 + self.tabWidth * progress;
+    
+    self.scrollView.contentOffset = CGPointMake(offsetX, 0);
+    
     //tab title colors
     if (!fromTapping) {
         return;

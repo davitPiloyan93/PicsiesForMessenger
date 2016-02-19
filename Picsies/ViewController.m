@@ -47,11 +47,14 @@
     
     [[StickersClient sharedInstance] stickersWithComplitionBlock:^(NSArray * items) {
         if (items.count) {
-            self.stickers = items;
-            [self.indicatorView stopAnimating];
-            [self.indicatorView removeFromSuperview];
-            self.indicatorView = nil;
-            [self initTabController];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.stickers = items;
+                [self.indicatorView stopAnimating];
+                [self.indicatorView removeFromSuperview];
+                self.indicatorView = nil;
+                [self initTabController];
+                
+            });
 
         } else {
             //try again alert
