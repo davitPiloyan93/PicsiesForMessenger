@@ -13,6 +13,17 @@
 		84A53D2A1C76FA52006CBF39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D281C76FA52006CBF39 /* Main.storyboard */; };
 		84A53D2C1C76FA52006CBF39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2B1C76FA52006CBF39 /* Assets.xcassets */; };
 		84A53D2F1C76FA52006CBF39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */; };
+		84A53D491C770C0A006CBF39 /* NSArray+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D401C770C0A006CBF39 /* NSArray+SCAdditions.m */; };
+		84A53D4A1C770C0A006CBF39 /* UIColor+Socialin.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D421C770C0A006CBF39 /* UIColor+Socialin.m */; };
+		84A53D4C1C770C0A006CBF39 /* SCPagingTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D461C770C0A006CBF39 /* SCPagingTabController.m */; };
+		84A53D571C771018006CBF39 /* SCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D561C771018006CBF39 /* SCTabBar.m */; };
+		84A53D5A1C771CCB006CBF39 /* SCPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D591C771CCB006CBF39 /* SCPagingViewController.m */; };
+		84A53D5D1C771E2E006CBF39 /* SCWrapperScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D5C1C771E2E006CBF39 /* SCWrapperScrollView.m */; };
+		84A53D611C7721D5006CBF39 /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D5F1C7721D5006CBF39 /* ContentController.m */; };
+		84A53D621C7721D5006CBF39 /* ContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D601C7721D5006CBF39 /* ContentController.xib */; };
+		84A53D651C7724EA006CBF39 /* UIViewController+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D641C7724EA006CBF39 /* UIViewController+SCAdditions.m */; };
+		84A53D691C772845006CBF39 /* PicsiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D671C772845006CBF39 /* PicsiesCell.m */; };
+		84A53D6A1C772845006CBF39 /* PicsiesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D681C772845006CBF39 /* PicsiesCell.xib */; };
 		C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */; };
 		C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -28,6 +39,26 @@
 		84A53D2B1C76FA52006CBF39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A53D2E1C76FA52006CBF39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A53D301C76FA52006CBF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84A53D3F1C770C0A006CBF39 /* NSArray+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SCAdditions.h"; sourceTree = "<group>"; };
+		84A53D401C770C0A006CBF39 /* NSArray+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SCAdditions.m"; sourceTree = "<group>"; };
+		84A53D411C770C0A006CBF39 /* UIColor+Socialin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Socialin.h"; sourceTree = "<group>"; };
+		84A53D421C770C0A006CBF39 /* UIColor+Socialin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Socialin.m"; sourceTree = "<group>"; };
+		84A53D451C770C0A006CBF39 /* SCPagingTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPagingTabController.h; sourceTree = "<group>"; };
+		84A53D461C770C0A006CBF39 /* SCPagingTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPagingTabController.m; sourceTree = "<group>"; };
+		84A53D551C771018006CBF39 /* SCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTabBar.h; sourceTree = "<group>"; };
+		84A53D561C771018006CBF39 /* SCTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTabBar.m; sourceTree = "<group>"; };
+		84A53D581C771CCB006CBF39 /* SCPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPagingViewController.h; sourceTree = "<group>"; };
+		84A53D591C771CCB006CBF39 /* SCPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPagingViewController.m; sourceTree = "<group>"; };
+		84A53D5B1C771E2E006CBF39 /* SCWrapperScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWrapperScrollView.h; sourceTree = "<group>"; };
+		84A53D5C1C771E2E006CBF39 /* SCWrapperScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWrapperScrollView.m; sourceTree = "<group>"; };
+		84A53D5E1C7721D5006CBF39 /* ContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentController.h; sourceTree = "<group>"; };
+		84A53D5F1C7721D5006CBF39 /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
+		84A53D601C7721D5006CBF39 /* ContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentController.xib; sourceTree = "<group>"; };
+		84A53D631C7724EA006CBF39 /* UIViewController+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SCAdditions.h"; sourceTree = "<group>"; };
+		84A53D641C7724EA006CBF39 /* UIViewController+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SCAdditions.m"; sourceTree = "<group>"; };
+		84A53D661C772845006CBF39 /* PicsiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicsiesCell.h; sourceTree = "<group>"; };
+		84A53D671C772845006CBF39 /* PicsiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicsiesCell.m; sourceTree = "<group>"; };
+		84A53D681C772845006CBF39 /* PicsiesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicsiesCell.xib; sourceTree = "<group>"; };
 		C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = Frameworks/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,10 +99,17 @@
 				84A53D231C76FA52006CBF39 /* AppDelegate.m */,
 				84A53D251C76FA52006CBF39 /* ViewController.h */,
 				84A53D261C76FA52006CBF39 /* ViewController.m */,
+				84A53D5E1C7721D5006CBF39 /* ContentController.h */,
+				84A53D5F1C7721D5006CBF39 /* ContentController.m */,
+				84A53D601C7721D5006CBF39 /* ContentController.xib */,
+				84A53D661C772845006CBF39 /* PicsiesCell.h */,
+				84A53D671C772845006CBF39 /* PicsiesCell.m */,
+				84A53D681C772845006CBF39 /* PicsiesCell.xib */,
 				84A53D281C76FA52006CBF39 /* Main.storyboard */,
 				84A53D2B1C76FA52006CBF39 /* Assets.xcassets */,
 				84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */,
 				84A53D301C76FA52006CBF39 /* Info.plist */,
+				84A53D3D1C770C0A006CBF39 /* ThirdParty */,
 				C21EA6581C76FF7A004587F8 /* Frameworks */,
 				84A53D1F1C76FA50006CBF39 /* Supporting Files */,
 			);
@@ -84,6 +122,35 @@
 				84A53D201C76FA50006CBF39 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84A53D3D1C770C0A006CBF39 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				84A53D3E1C770C0A006CBF39 /* Category */,
+				84A53D631C7724EA006CBF39 /* UIViewController+SCAdditions.h */,
+				84A53D641C7724EA006CBF39 /* UIViewController+SCAdditions.m */,
+				84A53D451C770C0A006CBF39 /* SCPagingTabController.h */,
+				84A53D461C770C0A006CBF39 /* SCPagingTabController.m */,
+				84A53D581C771CCB006CBF39 /* SCPagingViewController.h */,
+				84A53D591C771CCB006CBF39 /* SCPagingViewController.m */,
+				84A53D551C771018006CBF39 /* SCTabBar.h */,
+				84A53D561C771018006CBF39 /* SCTabBar.m */,
+				84A53D5B1C771E2E006CBF39 /* SCWrapperScrollView.h */,
+				84A53D5C1C771E2E006CBF39 /* SCWrapperScrollView.m */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		84A53D3E1C770C0A006CBF39 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				84A53D3F1C770C0A006CBF39 /* NSArray+SCAdditions.h */,
+				84A53D401C770C0A006CBF39 /* NSArray+SCAdditions.m */,
+				84A53D411C770C0A006CBF39 /* UIColor+Socialin.h */,
+				84A53D421C770C0A006CBF39 /* UIColor+Socialin.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		C21EA6581C76FF7A004587F8 /* Frameworks */ = {
@@ -153,6 +220,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A53D2F1C76FA52006CBF39 /* LaunchScreen.storyboard in Resources */,
+				84A53D6A1C772845006CBF39 /* PicsiesCell.xib in Resources */,
+				84A53D621C7721D5006CBF39 /* ContentController.xib in Resources */,
 				84A53D2C1C76FA52006CBF39 /* Assets.xcassets in Resources */,
 				84A53D2A1C76FA52006CBF39 /* Main.storyboard in Resources */,
 			);
@@ -165,9 +234,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A53D491C770C0A006CBF39 /* NSArray+SCAdditions.m in Sources */,
+				84A53D4A1C770C0A006CBF39 /* UIColor+Socialin.m in Sources */,
+				84A53D5D1C771E2E006CBF39 /* SCWrapperScrollView.m in Sources */,
+				84A53D4C1C770C0A006CBF39 /* SCPagingTabController.m in Sources */,
 				84A53D271C76FA52006CBF39 /* ViewController.m in Sources */,
+				84A53D651C7724EA006CBF39 /* UIViewController+SCAdditions.m in Sources */,
+				84A53D5A1C771CCB006CBF39 /* SCPagingViewController.m in Sources */,
 				84A53D241C76FA52006CBF39 /* AppDelegate.m in Sources */,
+				84A53D691C772845006CBF39 /* PicsiesCell.m in Sources */,
+				84A53D611C7721D5006CBF39 /* ContentController.m in Sources */,
 				84A53D211C76FA50006CBF39 /* main.m in Sources */,
+				84A53D571C771018006CBF39 /* SCTabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
