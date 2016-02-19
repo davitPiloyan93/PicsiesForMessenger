@@ -12,7 +12,6 @@
 		84A53D271C76FA52006CBF39 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D261C76FA52006CBF39 /* ViewController.m */; };
 		84A53D2A1C76FA52006CBF39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D281C76FA52006CBF39 /* Main.storyboard */; };
 		84A53D2C1C76FA52006CBF39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2B1C76FA52006CBF39 /* Assets.xcassets */; };
-		84A53D2F1C76FA52006CBF39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */; };
 		84A53D491C770C0A006CBF39 /* NSArray+SCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D401C770C0A006CBF39 /* NSArray+SCAdditions.m */; };
 		84A53D4A1C770C0A006CBF39 /* UIColor+Socialin.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D421C770C0A006CBF39 /* UIColor+Socialin.m */; };
 		84A53D4C1C770C0A006CBF39 /* SCPagingTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A53D461C770C0A006CBF39 /* SCPagingTabController.m */; };
@@ -59,7 +58,6 @@
 		84A53D261C76FA52006CBF39 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		84A53D291C76FA52006CBF39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A53D2B1C76FA52006CBF39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		84A53D2E1C76FA52006CBF39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A53D301C76FA52006CBF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84A53D3F1C770C0A006CBF39 /* NSArray+SCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SCAdditions.h"; sourceTree = "<group>"; };
 		84A53D401C770C0A006CBF39 /* NSArray+SCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SCAdditions.m"; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				84A53D681C772845006CBF39 /* PicsiesCell.xib */,
 				84A53D281C76FA52006CBF39 /* Main.storyboard */,
 				84A53D2B1C76FA52006CBF39 /* Assets.xcassets */,
-				84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */,
 				84A53D301C76FA52006CBF39 /* Info.plist */,
 				84A53D721C7755B8006CBF39 /* model */,
 				84A53D3D1C770C0A006CBF39 /* ThirdParty */,
@@ -354,7 +351,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84A53D2F1C76FA52006CBF39 /* LaunchScreen.storyboard in Resources */,
 				84A53D6A1C772845006CBF39 /* PicsiesCell.xib in Resources */,
 				84A53D621C7721D5006CBF39 /* PicsiesCollectionViewController.xib in Resources */,
 				84A53D2C1C76FA52006CBF39 /* Assets.xcassets in Resources */,
@@ -414,14 +410,6 @@
 				84A53D291C76FA52006CBF39 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84A53D2E1C76FA52006CBF39 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
