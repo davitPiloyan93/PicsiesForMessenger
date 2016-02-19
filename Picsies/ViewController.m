@@ -48,13 +48,15 @@
     self.bannerControler = bannerControler;
     [self addChildViewController:self.bannerControler];
     [self.scrollViewWrapper addSubview:self.bannerControler.view];
-    self.bannerControler.view.frame = (CGRect){CGPointZero, self.view.bounds.size.width, 240 };
-    self.bannerControler.view.backgroundColor = [UIColor blueColor];
+    self.bannerControler.view.frame = (CGRect){CGPointZero, self.view.bounds.size.width, 160};
+//    self.bannerControler.view.backgroundColor = [UIColor blueColor];
 
     self.bannerControler.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.bannerControler didMoveToParentViewController:self];
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
+    
+//    tabController.view.backgroundColor = [UIColor grayColor];
     
     self.tabController = tabController;
     self.tabController.dataSource = self;
@@ -65,7 +67,7 @@
     self.tabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.tabController didMoveToParentViewController:self];
     
-    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.bannerControler.view.frame.size.height - 64,
+    self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.bannerControler.view.frame.size.height ,
                                                                     0, 0, 0);
     self.scrollViewWrapper.scrollContainerView = self.tabController.view;
     self.scrollViewWrapper.delegate = self;

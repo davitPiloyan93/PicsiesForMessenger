@@ -9,6 +9,10 @@
 #import "ContentController.h"
 #import "PicsiesCell.h"
 
+#define offset 4
+#define itemsPerRow 2
+#define padding 16
+
 @interface ContentController ()
 
 @property (nonatomic) NSMutableArray *items;
@@ -32,7 +36,7 @@
 
 #pragma mark UICollectionViewDelegate
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.items.count;
 }
 
@@ -40,8 +44,12 @@
 
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
     return cell;
-    
-    
 }
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat itemSide = ([UIScreen mainScreen].bounds.size.width - (itemsPerRow + 1) * (padding - offset)) / itemsPerRow;
+    return CGSizeMake(itemSide, itemSide);
+}
+
 
 @end
