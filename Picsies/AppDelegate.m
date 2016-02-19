@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "Sticker.h"
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
+
 
 @interface AppDelegate () <FBSDKMessengerURLHandlerDelegate>
 
