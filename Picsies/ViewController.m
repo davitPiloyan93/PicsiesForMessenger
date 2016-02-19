@@ -18,7 +18,7 @@
                                 UIScrollViewDelegate>
 
 @property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
-@property (nonatomic,weak) SCPagingTabController *tabController;
+@property (nonatomic,weak) SCPagingTabController *pagingTabController;
 @property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
 @property (nonatomic) BOOL tabSelected;
 @end
@@ -54,18 +54,18 @@
     
     SCPagingTabController* tabController = [[SCPagingTabController alloc] initWithTabTitles:self.tabTitles];
     
-    self.tabController = tabController;
-    self.tabController.dataSource = self;
-    self.tabController.delegate = self;
-    [self addChildViewController:self.tabController];
-    [self.view addSubview:self.tabController.view];
-    self.tabController.view.frame = self.view.bounds;
-    self.tabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.tabController didMoveToParentViewController:self];
+    self.pagingTabController = tabController;
+    self.pagingTabController.dataSource = self;
+    self.pagingTabController.delegate = self;
+    [self addChildViewController:self.pagingTabController];
+    [self.view addSubview:self.pagingTabController.view];
+    self.pagingTabController.view.frame = self.view.bounds;
+    self.pagingTabController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.pagingTabController didMoveToParentViewController:self];
     
     self.scrollViewWrapper.scrollContainerInsets = UIEdgeInsetsMake(self.stickerSliderVC.view.frame.size.height,
                                                                     0, 0, 0);
-    self.scrollViewWrapper.scrollContainerView = self.tabController.view;
+    self.scrollViewWrapper.scrollContainerView = self.pagingTabController.view;
     self.scrollViewWrapper.delegate = self;
 }
 
@@ -113,6 +113,8 @@
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
     NSLog(@"index : %@", @(index));
+    self.tabSelected = YES;
+    [self.pagingTabController setVisibleIndex:index animated:NO];
 }
 
 - (void)dealloc {
