@@ -9,8 +9,9 @@
 #import "ViewController.h"
 #import "SCPagingTabController.h"
 #import "SCWrapperScrollView.h"
-#import "ContentController.h"
+#import "PicsiesCollectionViewController.h"
 #import "StickersSliderViewController.h"
+#import "StickersClient.h"
 
 @interface ViewController () < SCPagingTabControllerDataSource,
                                 SCPagingTabControllerDelegate,
@@ -21,17 +22,40 @@
 @property (nonatomic,weak) SCPagingTabController *tabController;
 @property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
 @property (nonatomic) BOOL tabSelected;
+@property (nonatomic) UIActivityIndicatorView *indicatorView;
+@property (nonatomic) NSArray *stickers;
+
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.indicatorView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    [self.view addSubview:self.indicatorView];
+    [self.indicatorView startAnimating];
+    
+    [[StickersClient sharedInstance] stickersWithComplitionBlock:^(NSArray * items) {
+        if (items.count) {
+            self.stickers = items;
+            [self.indicatorView stopAnimating];
+            [self.indicatorView removeFromSuperview];
+            self.indicatorView = nil;
+            [self initTabController];
+
+        } else {
+            //try again alert
+        }
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-        [self initTabController];
+    
 }
 
 - (BOOL)automaticallyAdjustsScrollViewInsets {
@@ -43,6 +67,7 @@
     self.scrollViewWrapper = scrollViewWrapper;
     self.scrollViewWrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.scrollViewWrapper atIndex:0];
+//    self.scrollViewWrapper.hidden= YES;
     
     StickersSliderViewController* stickerSliderVC = [[StickersSliderViewController alloc] init];
     self.stickerSliderVC = stickerSliderVC;
@@ -71,8 +96,9 @@
 
 - (NSArray *)tabTitles {
     NSMutableArray *titles = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 10; i++) {
-        [titles addObject:[NSString stringWithFormat:@"Name%@",@(i)]];
+    
+    for (Sticker *sticker in self.stickers) {
+        [titles addObject:[NSString stringWithFormat:@"%@",sticker.shop_item_name]];
     }
 
     return [titles copy];
@@ -80,7 +106,11 @@
 
 - (UIViewController *)pagingTabController:(SCPagingTabController *)pagingViewController
                     viewControllerAtIndex:(NSUInteger)index {
-    ContentController* collection = [[ContentController alloc] init];
+    
+    
+    PicsiesCollectionViewController* collection = [[PicsiesCollectionViewController alloc] init];
+    collection.sticker = self.stickers[index];
+    
     return collection;
 }
 

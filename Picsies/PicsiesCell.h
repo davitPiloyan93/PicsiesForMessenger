@@ -10,4 +10,6 @@
 
 @interface PicsiesCell : UICollectionViewCell
 
+- (void)setData:(NSURL *)imageURL;
+
 @end

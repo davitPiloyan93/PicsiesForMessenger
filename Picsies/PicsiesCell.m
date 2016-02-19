@@ -7,11 +7,23 @@
 //
 
 #import "PicsiesCell.h"
+#import "UIImageView+WebCache.h"
+
+@interface PicsiesCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@end
 
 @implementation PicsiesCell
 
 - (void)awakeFromNib {
     // Initialization code
+}
+
+- (void)setData:(NSURL *)imageURL {
+    
+    [self.imageView sd_setImageWithURL:imageURL];
+
 }
 
 @end
