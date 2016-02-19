@@ -13,6 +13,8 @@
 		84A53D2A1C76FA52006CBF39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D281C76FA52006CBF39 /* Main.storyboard */; };
 		84A53D2C1C76FA52006CBF39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2B1C76FA52006CBF39 /* Assets.xcassets */; };
 		84A53D2F1C76FA52006CBF39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */; };
+		C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */; };
+		C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		84A53D2B1C76FA52006CBF39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A53D2E1C76FA52006CBF39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A53D301C76FA52006CBF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = Frameworks/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +72,7 @@
 				84A53D2B1C76FA52006CBF39 /* Assets.xcassets */,
 				84A53D2D1C76FA52006CBF39 /* LaunchScreen.storyboard */,
 				84A53D301C76FA52006CBF39 /* Info.plist */,
+				C21EA6581C76FF7A004587F8 /* Frameworks */,
 				84A53D1F1C76FA50006CBF39 /* Supporting Files */,
 			);
 			path = Picsies;
@@ -77,6 +84,15 @@
 				84A53D201C76FA50006CBF39 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C21EA6581C76FF7A004587F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */,
+				C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +277,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Picsies/Frameworks",
+				);
 				INFOPLIST_FILE = Picsies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.Picsies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -272,10 +294,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Picsies/Frameworks",
+				);
 				INFOPLIST_FILE = Picsies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.Picsies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -298,6 +326,7 @@
 				84A53D351C76FA52006CBF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
