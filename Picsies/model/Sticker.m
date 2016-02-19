@@ -8,7 +8,7 @@
 
 #import "Sticker.h"
 #define SHOP_ITEM_BASE_URL @"http://static.picsart.com/shop/package_icon"
-
+#define BASE_URL @"http://static.picsart.com/"
 
 @implementation Sticker
 
@@ -64,8 +64,10 @@
     return NO;
 }
 
-- (NSURL *)shopItemPreviewIconUrl {
-    return [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@_icons/mini/%@_", SHOP_ITEM_BASE_URL, self.shop_item_uid, self.shop_item_name_prefix]]; // + position.png
+- (NSString *)shopItemBannerUrl {
+
+    NSString *iconsStr = [self.shop_item_uid stringByAppendingString:@"_icons"];
+    return [NSString pathWithComponents:@[BASE_URL,@"shop",@"package_icon",iconsStr,@"banner_"]];
 }
 
 - (NSString *)shopItemIconUrl {

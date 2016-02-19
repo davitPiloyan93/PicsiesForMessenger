@@ -79,15 +79,21 @@
 }
 
 - (void)initTabController {
-    SCWrapperScrollView* scrollViewWrapper = [[SCWrapperScrollView alloc] initWithFrame:self.view.bounds];
+    SCWrapperScrollView* scrollViewWrapper = [[SCWrapperScrollView alloc] initWithFrame:CGRectMake(0, 30.f, self.view.bounds.size.width, self.view.bounds.size.height)];
     self.scrollViewWrapper = scrollViewWrapper;
     self.scrollViewWrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.scrollViewWrapper atIndex:0];
-//    self.scrollViewWrapper.hidden= YES;
     
     StickersSliderViewController* stickerSliderVC = [[StickersSliderViewController alloc] init];
     self.stickerSliderVC = stickerSliderVC;
     self.stickerSliderVC.delegate = self;
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for (Sticker *item in self.stickers) {
+        
+           NSString *bannerUrl = [NSString stringWithFormat:@"%@1.jpg", item.shopItemBannerUrl];
+        [items addObject:bannerUrl];
+    }
+    self.stickerSliderVC.banners = items;
     self.stickerSliderVC.view.frame = (CGRect){CGPointZero, (CGSize){CGRectGetWidth(self.view.bounds), 188}};
     [self addChildViewController:self.stickerSliderVC];
     [self.scrollViewWrapper addSubview:self.stickerSliderVC.view];

@@ -12,7 +12,7 @@
 #import "Sticker.h"
 
 #define offset 4
-#define itemsPerRow 2
+#define itemsPerRow 3
 #define padding 16
 
 @interface PicsiesCollectionViewController ()
@@ -31,7 +31,7 @@
 }
 
 
--(void)setupShopItemIconsUrls {
+- (void)setupShopItemIconsUrls {
     self.itemsIconsUrls = [[NSMutableArray alloc] initWithCapacity:10];
     if (self.sticker.shop_item_preview_count > 0) {
         int itemIconsCount = self.sticker.shop_item_preview_count;
