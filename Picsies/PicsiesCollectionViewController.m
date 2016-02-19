@@ -21,15 +21,10 @@
 @interface PicsiesCollectionViewController ()
 
 @property (nonatomic) NSMutableArray *itemsIconsUrls;
+
 @property (nonatomic) PicsiesPreviewView *stickerPreviewView;
 
-@property (nonatomic,weak) UIView *PopupView;
-
-@property (nonatomic) UIButton *fbbutton;
-
 @property (nonatomic) NSIndexPath *currentIndexPath;
-
-
 
 @end
 
@@ -38,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupShopItemIconsUrls];
+
+    self.currentIndexPath = [NSIndexPath indexPathForRow:-1 inSection:0];
  
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PicsiesCell class]) bundle:nil] forCellWithReuseIdentifier:@"picsiesCellIdentifier"];
@@ -63,8 +60,6 @@
     [self.collectionView addGestureRecognizer:longPressGesture];
 }
 
-
-
 - (void)setupShopItemIconsUrls {
     self.itemsIconsUrls = [[NSMutableArray alloc] initWithCapacity:10];
     if (self.sticker.shop_item_preview_count > 0) {
@@ -89,19 +84,15 @@
     PicsiesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"picsiesCellIdentifier" forIndexPath:indexPath];
     [cell setData:self.itemsIconsUrls[indexPath.row]];
     
-    if (self.currentIndexPath.row == indexPath.row) {
-        [self showViews:YES];
+    if (self.currentIndexPath == indexPath) {
+        [cell hideViews:NO];
     } else {
-        [self showViews:NO];
+        [cell hideViews:YES];
     }
     
     return cell;
 }
 
-- (void)showViews:(BOOL)show {
-    self.PopupView.hidden = show;
-    self.fbbutton.hidden = show;
-}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -136,52 +127,19 @@
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.currentIndexPath == indexPath) {
+        PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        [currentSelectedCell hideViews:YES];
+        return YES;
+    }
     self.currentIndexPath = indexPath;
     PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (self.PopupView) {
-        UIView *fbbutton = self.PopupView.superview.subviews[2];
-        [fbbutton removeFromSuperview];
-        [self.PopupView removeFromSuperview];
-    }
-    UIView *popUpView = [[UIView alloc]initWithFrame:currentSelectedCell.bounds];
-    self.PopupView = popUpView;
-    popUpView.backgroundColor = [UIColor whiteColor];
-    popUpView.alpha = .7;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closePopup:)];
-    [popUpView addGestureRecognizer:tapGesture];
     
-    [currentSelectedCell addSubview:popUpView];
-    CGFloat buttonWidth = 50;
-    UIButton *button = [FBSDKMessengerShareButton circularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue
-                                                                    width:buttonWidth];
-    self.fbbutton = button;
-    [button addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    button.center = CGPointMake(CGRectGetWidth(currentSelectedCell.frame) / 2.f, CGRectGetHeight(currentSelectedCell.frame) / 2.f);
-    [currentSelectedCell addSubview:button];
-    return YES;
-}
-
-- (void)shareButtonPressed:(UIButton *)fbButton {
-    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
-    options.renderAsSticker = YES;
-    [FBSDKMessengerSharer shareImage:[((PicsiesCell *)fbButton.superview) cellImageView].image withOptions:options];
-    [self.PopupView removeFromSuperview];
-    [fbButton removeFromSuperview];
-    self.fbbutton = nil;
-}
-
-
-- (void)closePopup:(UITapGestureRecognizer *)tapGesture {
-//    UIView *fbbutton = tapGesture.view.superview.subviews[2];
-    [self.fbbutton removeFromSuperview];
-    self.fbbutton = nil;
-    [tapGesture.view removeFromSuperview];
-}
-
-- (void)dealloc {
-    if (self.stickerPreviewView) {
-        [self.stickerPreviewView removeFromSuperview];
+    for ( PicsiesCell *cell in  collectionView.visibleCells) {
+        [cell hideViews:YES];
     }
+    [currentSelectedCell hideViews:NO];
+    return YES;
 }
 
 @end
