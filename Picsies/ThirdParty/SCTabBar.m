@@ -184,7 +184,7 @@
     float tabWidth = MIN(MAX_TAB_WIDTH, MAX(MIN_TAB_WIDTH, maxTitleWidth));
     float preferredWidth = self.bounds.size.width / self.tabs.count;
     
-    _tabWidth = MAX(preferredWidth, tabWidth);
+    _tabWidth = MAX(preferredWidth, tabWidth) - 60.f;
 }
 
 - (void)relayout {

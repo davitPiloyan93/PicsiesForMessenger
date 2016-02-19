@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol  StickersSliderDelegate;
-
-@interface StickersSliderViewController : UIViewController
-
-@property (nonatomic, weak) id<StickersSliderDelegate> delegate;
-
-@end
+@class StickersSliderViewController;
 
 @protocol StickersSliderDelegate <NSObject>
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index;
+
+@end
+
+
+@interface StickersSliderViewController : UIViewController
+
+@property (nonatomic, weak) id<StickersSliderDelegate> delegate;
+@property (nonatomic) NSArray *banners;
 
 @end

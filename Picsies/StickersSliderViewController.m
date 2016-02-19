@@ -8,9 +8,9 @@
 
 #import "StickersSliderViewController.h"
 #import "iCarousel.h"
+#import "UIImageView+WebCache.h"
 
 @interface StickersSliderViewController ()<iCarouselDelegate, iCarouselDataSource>
-@property (nonatomic) NSArray *stickerItems;
 @property (nonatomic) iCarousel* carousel;
 @property (nonatomic) NSTimer *timer;
 @end
@@ -19,17 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self createImages];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configCarousel];
-}
-
-- (void)createImages {
-    self.stickerItems = @[@"testImage1", @"testImage1", @"testImage1", @"testImage1",@"testImage1", @"testImage1", @"testImage1", @"testImage1", @"testImage1"];
 }
 
 - (void)configCarousel {
@@ -45,7 +39,7 @@
 #pragma mark - iCarousel
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
-    return self.stickerItems.count;
+    return self.banners.count;
 }
 
 - (UIView *)carousel:(iCarousel *)_carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -72,7 +66,8 @@
         image = (UIImageView*)[view viewWithTag:1];
         image.frame = frame;
     }
-    [image setImage:[UIImage imageNamed:self.stickerItems[index]]];
+    
+    [image sd_setImageWithURL:self.banners[index]];
     
     return view;
 }
