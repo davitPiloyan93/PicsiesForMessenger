@@ -26,6 +26,8 @@
 
 @property (nonatomic) NSIndexPath *currentIndexPath;
 
+@property (nonatomic) BOOL notFirstLongPress;
+
 @end
 
 @implementation PicsiesCollectionViewController
@@ -115,12 +117,23 @@
             if (idx != position) {
                 position = idx;
                 id detailItem = self.itemsIconsUrls[idx];
-                
-                [self.stickerPreviewView.imageView sd_setImageWithURL:detailItem];
+                if(!self.notFirstLongPress) {
+                    [self.stickerPreviewView.imageView sd_setImageWithURL:detailItem];
+                    self.notFirstLongPress = YES;
+                    self.stickerPreviewView.imageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
+                    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
+                        self.stickerPreviewView.imageView.transform =CGAffineTransformIdentity;
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                }else {
+                    [self.stickerPreviewView.imageView sd_setImageWithURL:detailItem];
+                }
             }
         }
     } else {
         position = -1;
+        self.notFirstLongPress = NO;
         self.stickerPreviewView.imageView.image = nil;
         [self.stickerPreviewView hide:YES];
     }
