@@ -129,7 +129,7 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentIndexPath == indexPath) {
         PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        [currentSelectedCell hideViews:YES];
+        [currentSelectedCell hideViews:NO];
         return YES;
     }
     self.currentIndexPath = indexPath;
