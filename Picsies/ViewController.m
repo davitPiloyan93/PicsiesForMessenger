@@ -65,25 +65,26 @@
 - (void)requestItems {
 
     [self.indicatorView startAnimating];
-    
-    [[StickersClient sharedInstance] stickersWithComplitionBlock:^(NSArray * items) {
+    StickersClient *client = [[StickersClient alloc] init];
+    __weak ViewController *weakSelf = self;
+    [client stickersWithComplitionBlock:^(NSArray * items) {
+        
         if (items.count) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.stickers = items;
-                [self.indicatorView stopAnimating];
-                [self.indicatorView removeFromSuperview];
-                self.indicatorView = nil;
-                [self initTabController];
-                self.noNetworkView.hidden = YES;
+                weakSelf.stickers = items;
+                [weakSelf.indicatorView stopAnimating];
+                [weakSelf.indicatorView removeFromSuperview];
+                weakSelf.indicatorView = nil;
+                [weakSelf initTabController];
+                weakSelf.noNetworkView.hidden = YES;
                 
             });
             
         } else {
-            [self.indicatorView stopAnimating];
-            [self.indicatorView removeFromSuperview];
-            self.indicatorView = nil;
-
-            [self createNoNetworkView];
+            [weakSelf.indicatorView stopAnimating];
+            [weakSelf.indicatorView removeFromSuperview];
+            weakSelf.indicatorView = nil;
+            [weakSelf createNoNetworkView];
         }
     }];
 

@@ -11,22 +11,12 @@
 
 #define STICKERS_URL @"http://api.picsart.com/apps.json?app=com.picsart.studio&market=apple&type=apps&offet=0&limit=-1"
 
-
 @interface StickersClient ()
 
 
 @end
 
 @implementation StickersClient
-
-+ (StickersClient *)sharedInstance {
-    static StickersClient *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[StickersClient alloc] init];
-    });
-    return __sharedInstance;
-}
 
 - (void)stickersWithComplitionBlock:(void (^)(NSArray * items))complitionBlock {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"stickers"]) {

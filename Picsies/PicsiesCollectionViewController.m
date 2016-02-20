@@ -15,7 +15,6 @@
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 #define offset 4
-
 #define padding 16
 
 @interface PicsiesCollectionViewController ()
@@ -27,6 +26,7 @@
 @property (nonatomic) NSIndexPath *currentIndexPath;
 
 @property (nonatomic) BOOL notFirstLongPress;
+@property (nonatomic) BOOL animationStarted;
 
 @end
 
@@ -123,9 +123,7 @@
                     self.stickerPreviewView.imageView.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
                     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
                         self.stickerPreviewView.imageView.transform =CGAffineTransformIdentity;
-                    } completion:^(BOOL finished) {
-                        
-                    }];
+                    } completion:nil];
                 }else {
                     [self.stickerPreviewView.imageView sd_setImageWithURL:detailItem];
                 }
@@ -140,6 +138,11 @@
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.animationStarted) {
+        return YES;
+    }
+    self.animationStarted = YES;
+
     self.currentIndexPath = indexPath;
     PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
@@ -147,6 +150,9 @@
         [cell hideViews:YES];
     }
     [currentSelectedCell hideViews:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.animationStarted = NO;
+    });
     return YES;
 }
 

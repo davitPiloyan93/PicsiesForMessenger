@@ -11,6 +11,7 @@
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 @interface PicsiesCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (nonatomic) UIView *popupView;
@@ -39,19 +40,25 @@
                                                                     width:buttonWidth];
     self.fbbutton = button;
     [button addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake((CGRectGetWidth(self.bounds)-50)/2, (CGRectGetHeight(self.bounds)-50)/2, 50, 50);
     [self.contentView addSubview:button];
     self.fbbutton.hidden = YES;
 
 }
 
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    self.fbbutton.frame = CGRectMake((CGRectGetWidth(self.contentView.bounds)-50)/2, (CGRectGetHeight(self.contentView.bounds)-50)/2, 50, 50);
+}
+
 - (void)hideViews:(BOOL)hide {
     if(self.popupView.hidden != hide) {
+
         if (hide) {
             [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
                 self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
                 self.popupView.hidden = YES;
             } completion:^(BOOL finished) {
+
                 self.fbbutton.hidden = YES;
                 self.fbbutton.transform = CGAffineTransformIdentity;
             }];
@@ -61,9 +68,7 @@
             self.popupView.hidden = NO;
             [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
                 self.fbbutton.transform = CGAffineTransformIdentity;
-            } completion:^(BOOL finished) {
-                
-            }];
+            } completion:nil];
         }
     }
 }
@@ -88,14 +93,15 @@
 
 - (void)closePopup:(UITapGestureRecognizer *)recognizer {
     [self hideViews:YES];
-    
 }
 
 - (void)shareButtonPressed:(UIButton *)sender {
     FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
     options.renderAsSticker = YES;
     [FBSDKMessengerSharer shareImage:self.imageView.image withOptions:options];
-    [self hideViews:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideViews:YES];
+    });
 }
 
 @end

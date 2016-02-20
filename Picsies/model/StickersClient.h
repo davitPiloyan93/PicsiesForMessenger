@@ -10,8 +10,6 @@
 
 @interface StickersClient : NSObject
 
-+ (StickersClient *)sharedInstance;
-
 - (void)stickersWithComplitionBlock:(void (^)(NSArray *items))complitionBlock;
 
 @end

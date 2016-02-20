@@ -43,7 +43,7 @@
 }
 
 - (void)hide:(BOOL)animated {
-    [UIView animateWithDuration:0.2f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         self.alpha = 0.0;
     } completion:^(BOOL finished) {
         self.hidden = YES;
