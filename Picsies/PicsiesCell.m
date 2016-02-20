@@ -46,8 +46,26 @@
 }
 
 - (void)hideViews:(BOOL)hide {
-    self.popupView.hidden = hide;
-    self.fbbutton.hidden = hide;
+    if(self.popupView.hidden != hide) {
+        if (hide) {
+            [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
+                self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
+                self.popupView.hidden = YES;
+            } completion:^(BOOL finished) {
+                self.fbbutton.hidden = YES;
+                self.fbbutton.transform = CGAffineTransformIdentity;
+            }];
+        } else {
+            self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
+            self.fbbutton.hidden = NO;
+            self.popupView.hidden = NO;
+            [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
+                self.fbbutton.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+    }
 }
 
 - (void)setData:(NSURL *)imageURL {
