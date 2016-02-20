@@ -35,7 +35,6 @@
             Sticker *sticker = [[Sticker alloc] initWithDictionary:item];
             if ([sticker.shop_item_name_prefix isEqual:@"i_clipart"]) {
                 [items addObject:sticker];
-                
             }
         }
         complitionBlock(items);

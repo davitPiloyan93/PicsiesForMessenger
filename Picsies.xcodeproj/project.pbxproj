@@ -121,8 +121,8 @@
 		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickersSliderViewController.h; sourceTree = "<group>"; };
 		C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickersSliderViewController.m; sourceTree = "<group>"; };
-		C41D13BC1C772DB400FDE821 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		C41D13BD1C772DB400FDE821 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		C41D13BC1C772DB400FDE821 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = ../iCarousel.h; sourceTree = "<group>"; };
+		C41D13BD1C772DB400FDE821 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = ../iCarousel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,23 +157,11 @@
 		84A53D1E1C76FA50006CBF39 /* Picsies */ = {
 			isa = PBXGroup;
 			children = (
-				84A53D221C76FA52006CBF39 /* AppDelegate.h */,
-				84A53D231C76FA52006CBF39 /* AppDelegate.m */,
 				84A53D251C76FA52006CBF39 /* ViewController.h */,
 				84A53D261C76FA52006CBF39 /* ViewController.m */,
-				C41D13BC1C772DB400FDE821 /* iCarousel.h */,
-				C41D13BD1C772DB400FDE821 /* iCarousel.m */,
 				C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */,
 				C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */,
-				84A53D5E1C7721D5006CBF39 /* PicsiesCollectionViewController.h */,
-				84A53D5F1C7721D5006CBF39 /* PicsiesCollectionViewController.m */,
-				84A53D601C7721D5006CBF39 /* PicsiesCollectionViewController.xib */,
-				84A53D661C772845006CBF39 /* PicsiesCell.h */,
-				84A53D671C772845006CBF39 /* PicsiesCell.m */,
-				84A53D681C772845006CBF39 /* PicsiesCell.xib */,
-				84A53D281C76FA52006CBF39 /* Main.storyboard */,
-				84A53D2B1C76FA52006CBF39 /* Assets.xcassets */,
-				84A53D301C76FA52006CBF39 /* Info.plist */,
+				C21EA66E1C77FBE2004587F8 /* PicsiesPreviewController */,
 				84A53D721C7755B8006CBF39 /* model */,
 				84A53D3D1C770C0A006CBF39 /* ThirdParty */,
 				C21EA6581C76FF7A004587F8 /* Frameworks */,
@@ -185,6 +173,11 @@
 		84A53D1F1C76FA50006CBF39 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84A53D221C76FA52006CBF39 /* AppDelegate.h */,
+				84A53D231C76FA52006CBF39 /* AppDelegate.m */,
+				84A53D281C76FA52006CBF39 /* Main.storyboard */,
+				84A53D2B1C76FA52006CBF39 /* Assets.xcassets */,
+				84A53D301C76FA52006CBF39 /* Info.plist */,
 				84A53D201C76FA50006CBF39 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -193,6 +186,8 @@
 		84A53D3D1C770C0A006CBF39 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C41D13BC1C772DB400FDE821 /* iCarousel.h */,
+				C41D13BD1C772DB400FDE821 /* iCarousel.m */,
 				84A53DAB1C77A4BF006CBF39 /* PicsiesPreviewView */,
 				84A53D791C776B19006CBF39 /* SDWebImage */,
 				84A53D3E1C770C0A006CBF39 /* Category */,
@@ -288,6 +283,19 @@
 				C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C21EA66E1C77FBE2004587F8 /* PicsiesPreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				84A53D5E1C7721D5006CBF39 /* PicsiesCollectionViewController.h */,
+				84A53D5F1C7721D5006CBF39 /* PicsiesCollectionViewController.m */,
+				84A53D601C7721D5006CBF39 /* PicsiesCollectionViewController.xib */,
+				84A53D661C772845006CBF39 /* PicsiesCell.h */,
+				84A53D671C772845006CBF39 /* PicsiesCell.m */,
+				84A53D681C772845006CBF39 /* PicsiesCell.xib */,
+			);
+			name = PicsiesPreviewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

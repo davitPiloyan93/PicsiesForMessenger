@@ -25,6 +25,9 @@
 @property (nonatomic) BOOL tabSelected;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
 @property (nonatomic) NSArray *stickers;
+@property (nonatomic) UIView *noNetworkView;
+@property (nonatomic) BOOL dsadsa;
+
 
 
 @end
@@ -33,16 +36,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    
-//    UIButton *button = [FBSDKMessengerShareButton rectangularButtonWithStyle:FBSDKMessengerShareButtonStyleBlue];
-//    [button addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
-//    [button setTitle:@"Send" forState:UIControlStateNormal];
-//    [self.view addSubview:button];
-//    button.center = self.view.center;
+    [self requestItems];
+}
+
+- (void)createNoNetworkView {
+    if (self.noNetworkView) {
+        self.noNetworkView.hidden = NO;
+        return;
+    }
+    self.noNetworkView = [[UIView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.noNetworkView];
+    self.noNetworkView.backgroundColor = [UIColor whiteColor];
     
-    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.indicatorView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-    [self.view addSubview:self.indicatorView];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, (CGRectGetHeight(self.view.bounds)-80) /2, CGRectGetWidth(self.view.bounds), 30.f)];
+    label.text = @"Oops! prblems with Network";
+    label.font = [UIFont systemFontOfSize:17.f];
+    label.textColor = [UIColor colorWithWhite:130.f/255.f alpha:1];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.noNetworkView addSubview:label];
+    
+    UIButton *retryButton = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.bounds) - 70)/2, (CGRectGetHeight(self.view.bounds)- 70)/2 +40 , 70, 70)];
+    [retryButton setImage:[UIImage imageNamed:@"retry"] forState:UIControlStateNormal];
+    [retryButton addTarget:self action:@selector(retryAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.noNetworkView addSubview:retryButton];
+    
+}
+
+- (void)requestItems {
+
     [self.indicatorView startAnimating];
     
     [[StickersClient sharedInstance] stickersWithComplitionBlock:^(NSArray * items) {
@@ -53,28 +74,33 @@
                 [self.indicatorView removeFromSuperview];
                 self.indicatorView = nil;
                 [self initTabController];
+                self.noNetworkView.hidden = YES;
                 
             });
-
+            
         } else {
-            //try again alert
+            [self.indicatorView stopAnimating];
+            [self.indicatorView removeFromSuperview];
+            self.indicatorView = nil;
+
+            [self createNoNetworkView];
         }
     }];
-    
-    //[FBSDKMessengerSharer messengerPlatformCapabilities] & FBSDKMessengerPlatformCapabilityImage)
-    //NSLog(@"Error - Messenger platform capabilities don't include image sharing");
+
 }
 
--(void)sendAction {
-    FBSDKMessengerShareOptions *options = [[FBSDKMessengerShareOptions alloc] init];
-    options.renderAsSticker = YES;
-    
-    [FBSDKMessengerSharer shareImage:[UIImage imageNamed:@"test_icon"] withOptions:options];
+- (void)retryAction:(UIButton *)sender {
+    self.noNetworkView.hidden = YES;
+    [self requestItems];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
+- (UIActivityIndicatorView *)indicatorView {
+    if (_indicatorView == nil) {
+        _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicatorView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+        [self.view addSubview:_indicatorView];
+    }
+    return _indicatorView;
 }
 
 - (BOOL)automaticallyAdjustsScrollViewInsets {
@@ -164,29 +190,6 @@
         cover.transform = CGAffineTransformMakeScale(s, s);
         cover.center = CGPointMake(cover.center.x, cover.bounds.size.height / 2 + (cover.bounds.size.height - cover.frame.size.height) / 2);
     }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self stoppedScrolling];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
-                  willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
-        [self stoppedScrolling];
-    }
-}
-
-- (void)stoppedScrolling {
-    return; //TODO
-    
-    float newOffsetY = self.scrollViewWrapper.contentInset.top;
-    if (self.scrollViewWrapper.contentOffset.y > self.scrollViewWrapper.scrollContainerInsets.top / 2) {
-        newOffsetY = self.scrollViewWrapper.scrollContainerInsets.top + 1; //TODO
-    }
-    CGPoint offset = self.scrollViewWrapper.contentOffset;
-    offset.y = newOffsetY;
-    [self.scrollViewWrapper setContentOffset:offset animated:YES];
 }
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {

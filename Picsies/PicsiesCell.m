@@ -39,9 +39,10 @@
                                                                     width:buttonWidth];
     self.fbbutton = button;
     [button addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    button.center = CGPointMake(CGRectGetWidth(self.frame) / 2.f, CGRectGetHeight(self.frame) / 2.f);
+    button.frame = CGRectMake((CGRectGetWidth(self.bounds)-50)/2, (CGRectGetHeight(self.bounds)-50)/2, 50, 50);
     [self.contentView addSubview:button];
     self.fbbutton.hidden = YES;
+
 }
 
 - (void)hideViews:(BOOL)hide {
@@ -50,7 +51,21 @@
 }
 
 - (void)setData:(NSURL *)imageURL {
-    [self.imageView sd_setImageWithURL:imageURL];
+    [self.imageView sd_setImageWithURL:imageURL placeholderImage:[self imageWithColor:[UIColor colorWithWhite:239.f/255.f alpha:1]]];
+}
+
+-(UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)closePopup:(UITapGestureRecognizer *)recognizer {
