@@ -109,7 +109,8 @@
 }
 
 - (void)initTabController {
-    SCWrapperScrollView* scrollViewWrapper = [[SCWrapperScrollView alloc] initWithFrame:CGRectMake(0, 30.f, self.view.bounds.size.width, self.view.bounds.size.height)];
+    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    SCWrapperScrollView* scrollViewWrapper = [[SCWrapperScrollView alloc] initWithFrame:CGRectMake(0, statusBarHeight, self.view.bounds.size.width, self.view.bounds.size.height)];
     self.scrollViewWrapper = scrollViewWrapper;
     self.scrollViewWrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.scrollViewWrapper atIndex:0];
