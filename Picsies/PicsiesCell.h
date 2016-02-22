@@ -12,7 +12,7 @@
 
 - (void)setData:(NSURL *)imageURL;
 
-- (void)hideViews:(BOOL)show;
+- (void)hideViews:(BOOL)hide animation:(BOOL)animation;
 
 
 @end
