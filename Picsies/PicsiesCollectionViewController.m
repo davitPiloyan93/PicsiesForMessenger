@@ -27,6 +27,8 @@
 
 @property (nonatomic) BOOL notFirstLongPress;
 
+@property (nonatomic) BOOL notFirstLongUnpress;
+
 @end
 
 @implementation PicsiesCollectionViewController
@@ -129,10 +131,23 @@
             }
         }
     } else {
-        position = -1;
-        self.notFirstLongPress = NO;
-        self.stickerPreviewView.imageView.image = nil;
-        [self.stickerPreviewView hide:YES];
+        if (!self.notFirstLongUnpress) {
+            self.notFirstLongUnpress = YES;
+            [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:0 animations:^{
+                self.stickerPreviewView.backgroundColor = [UIColor clearColor];
+                self.stickerPreviewView.imageView.transform = CGAffineTransformMakeScale(0.000000001, 0.00000001);
+            } completion:^(BOOL finished) {
+                [self.stickerPreviewView hide:NO];
+                self.stickerPreviewView.imageView.transform = CGAffineTransformIdentity;
+                position = -1;
+                self.notFirstLongPress = NO;
+                self.notFirstLongUnpress = NO;
+                self.stickerPreviewView.imageView.image = nil;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.stickerPreviewView.backgroundColor = [UIColor colorWithWhite:0.6f alpha:0.7f]; 
+                });
+            }];
+        }
     }
 }
 
