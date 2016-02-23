@@ -87,9 +87,9 @@
     [cell setData:self.itemsIconsUrls[indexPath.row]];
     
     if (self.currentIndexPath == indexPath) {
-        [cell hideViews:NO];
+        [cell hideViews:NO animation:NO];
     } else {
-        [cell hideViews:YES];
+        [cell hideViews:YES animation:NO];
     }
     
     return cell;
@@ -147,10 +147,10 @@
     PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
     for ( PicsiesCell *cell in  collectionView.visibleCells) {
-        [cell hideViews:YES];
+        [cell hideViews:YES animation:NO];
     }
-    [currentSelectedCell hideViews:NO];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [currentSelectedCell hideViews:NO animation:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.animationStarted = NO;
     });
     return YES;

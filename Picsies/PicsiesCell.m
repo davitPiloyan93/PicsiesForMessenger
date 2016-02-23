@@ -50,15 +50,14 @@
     self.fbbutton.frame = CGRectMake((CGRectGetWidth(self.contentView.bounds)-50)/2, (CGRectGetHeight(self.contentView.bounds)-50)/2, 50, 50);
 }
 
-- (void)hideViews:(BOOL)hide {
-    if(self.popupView.hidden != hide) {
-
+- (void)hideViews:(BOOL)hide animation:(BOOL)animation {
+    if (animation) {
         if (hide) {
             [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
                 self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
                 self.popupView.hidden = YES;
             } completion:^(BOOL finished) {
-
+                
                 self.fbbutton.hidden = YES;
                 self.fbbutton.transform = CGAffineTransformIdentity;
             }];
@@ -70,6 +69,9 @@
                 self.fbbutton.transform = CGAffineTransformIdentity;
             } completion:nil];
         }
+    } else {
+        self.popupView.hidden = hide;
+        self.fbbutton.hidden = hide;
     }
 }
 
@@ -92,7 +94,7 @@
 }
 
 - (void)closePopup:(UITapGestureRecognizer *)recognizer {
-    [self hideViews:YES];
+    [self hideViews:YES animation:YES];
 }
 
 - (void)shareButtonPressed:(UIButton *)sender {
@@ -100,7 +102,7 @@
     options.renderAsSticker = YES;
     [FBSDKMessengerSharer shareImage:self.imageView.image withOptions:options];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideViews:YES];
+        [self hideViews:YES animation:NO];
     });
 }
 
