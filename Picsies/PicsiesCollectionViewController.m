@@ -26,7 +26,6 @@
 @property (nonatomic) NSIndexPath *currentIndexPath;
 
 @property (nonatomic) BOOL notFirstLongPress;
-@property (nonatomic) BOOL animationStarted;
 
 @end
 
@@ -138,21 +137,13 @@
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.animationStarted) {
-        return YES;
-    }
-    self.animationStarted = YES;
-
     self.currentIndexPath = indexPath;
     PicsiesCell *currentSelectedCell = (PicsiesCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
     for ( PicsiesCell *cell in  collectionView.visibleCells) {
         [cell hideViews:YES animation:NO];
     }
-    [currentSelectedCell hideViews:NO animation:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.animationStarted = NO;
-    });
+    [currentSelectedCell hideViews:NO animation:NO];
     return YES;
 }
 

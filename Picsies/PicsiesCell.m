@@ -94,7 +94,7 @@
 }
 
 - (void)closePopup:(UITapGestureRecognizer *)recognizer {
-    [self hideViews:YES animation:YES];
+    [self hideViews:YES animation:NO];
 }
 
 - (void)shareButtonPressed:(UIButton *)sender {
