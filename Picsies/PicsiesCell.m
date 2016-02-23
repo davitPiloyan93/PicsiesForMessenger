@@ -60,7 +60,7 @@
         self.animationStarted = YES;
         if (hide) {
             [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:1 options:0 animations:^{
-                self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
+                self.fbbutton.transform = CGAffineTransformMakeScale(0.000000001, 0.00000001);
                 self.popupView.hidden = YES;
             } completion:^(BOOL finished) {
                 self.animationStarted = NO;
@@ -102,7 +102,7 @@
 }
 
 - (void)closePopup:(UITapGestureRecognizer *)recognizer {
-    [self hideViews:YES animation:NO];
+    [self hideViews:YES animation:YES];
 }
 
 - (void)shareButtonPressed:(UIButton *)sender {

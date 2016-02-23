@@ -143,7 +143,7 @@
     for ( PicsiesCell *cell in  collectionView.visibleCells) {
         [cell hideViews:YES animation:NO];
     }
-    [currentSelectedCell hideViews:NO animation:NO];
+    [currentSelectedCell hideViews:NO animation:YES];
     return YES;
 }
 
