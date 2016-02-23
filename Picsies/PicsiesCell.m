@@ -18,6 +18,8 @@
 
 @property (nonatomic) UIButton *fbbutton;
 
+@property (nonatomic) BOOL animationStarted;
+
 @end
 
 @implementation PicsiesCell
@@ -51,23 +53,29 @@
 }
 
 - (void)hideViews:(BOOL)hide animation:(BOOL)animation {
+    if (self.animationStarted && animation) {
+        return;
+    }
     if (animation) {
+        self.animationStarted = YES;
         if (hide) {
-            [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
+            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:1 options:0 animations:^{
                 self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
                 self.popupView.hidden = YES;
             } completion:^(BOOL finished) {
-                
+                self.animationStarted = NO;
                 self.fbbutton.hidden = YES;
                 self.fbbutton.transform = CGAffineTransformIdentity;
             }];
         } else {
-            self.fbbutton.transform = CGAffineTransformMakeScale(0.0001, 0.0001);
+            self.fbbutton.transform = CGAffineTransformMakeScale(0.000001, 0.000001);
             self.fbbutton.hidden = NO;
             self.popupView.hidden = NO;
-            [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:0 animations:^{
+            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:1 options:0 animations:^{
                 self.fbbutton.transform = CGAffineTransformIdentity;
-            } completion:nil];
+            } completion:^(BOOL finished) {
+                self.animationStarted = NO;
+            }];
         }
     } else {
         self.popupView.hidden = hide;
