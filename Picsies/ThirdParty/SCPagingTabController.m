@@ -125,6 +125,9 @@
 }
 
 - (void)pagingViewController:(SCPagingViewController *)pagingViewController didUpdateTransitionProgress:(float)progress {
+    if ([self.delegate respondsToSelector:@selector(pagingTabController:didUpdateTransitionProgress:)]) {
+        [self.delegate pagingTabController:self didUpdateTransitionProgress:progress];
+    }
     [self.tabBar setProgress:progress fromTapping:NO];
 }
 

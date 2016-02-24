@@ -31,6 +31,9 @@
 
 - (void)pagingTabSelectedAtIndex:(NSUInteger)index byUser:(BOOL)byUser;
 
+- (void)pagingTabController:(SCPagingTabController *)pagingViewController didUpdateTransitionProgress:(float)progress;
+
+
 @end
 
 @interface SCPagingTabController : UIViewController

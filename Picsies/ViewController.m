@@ -13,6 +13,7 @@
 #import "PicsiesCollectionViewController.h"
 #import "StickersSliderViewController.h"
 #import "StickersClient.h"
+#import "SCPagingViewController.h"
 
 @interface ViewController () < SCPagingTabControllerDataSource,
                                 SCPagingTabControllerDelegate,
@@ -22,11 +23,10 @@
 @property (nonatomic,weak) SCWrapperScrollView *scrollViewWrapper;
 @property (nonatomic,weak) SCPagingTabController *pagingTabController;
 @property (nonatomic,weak) StickersSliderViewController *stickerSliderVC;
-@property (nonatomic) BOOL tabSelected;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
 @property (nonatomic) NSArray *stickers;
 @property (nonatomic) UIView *noNetworkView;
-@property (nonatomic) BOOL dsadsa;
+@property (nonatomic) int index;
 
 
 
@@ -115,13 +115,12 @@
     self.scrollViewWrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:self.scrollViewWrapper atIndex:0];
     
-    StickersSliderViewController* stickerSliderVC = [[StickersSliderViewController alloc] init];
+    StickersSliderViewController *stickerSliderVC = [[StickersSliderViewController alloc] init];
     self.stickerSliderVC = stickerSliderVC;
     self.stickerSliderVC.delegate = self;
     NSMutableArray *items = [[NSMutableArray alloc] init];
     for (Sticker *item in self.stickers) {
-        
-           NSString *bannerUrl = [NSString stringWithFormat:@"%@1.jpg", item.shopItemBannerUrl];
+        NSString *bannerUrl = [NSString stringWithFormat:@"%@1.jpg", item.shopItemBannerUrl];
         [items addObject:bannerUrl];
     }
     self.stickerSliderVC.banners = items;
@@ -163,6 +162,7 @@
     
     PicsiesCollectionViewController* collection = [[PicsiesCollectionViewController alloc] init];
     collection.sticker = self.stickers[index];
+
     
     return collection;
 }
@@ -173,13 +173,16 @@
     UICollectionView* collectionView = [(id)viewController collectionView];
     collectionView.scrollsToTop = NO;
     self.scrollViewWrapper.scrollView = collectionView;
-    self.tabSelected = NO;
+
+
+
 }
 
-- (void)pagingTabSelectedAtIndex:(NSUInteger)index byUser:(BOOL)byUser{
-    if (byUser) {
-        self.tabSelected = YES;
-    }
+- (void)pagingTabController:(SCPagingTabController *)pagingViewController didUpdateTransitionProgress:(float)progress {
+    
+    if(progress > 0){
+    [self.stickerSliderVC scrollToOffset:progress withIgnore:YES];
+}
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -193,12 +196,21 @@
         cover.center = CGPointMake(cover.center.x, cover.bounds.size.height / 2 + (cover.bounds.size.height - cover.frame.size.height) / 2);
     }
 }
+//
+//- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
+//    NSLog(@"index : %@", @(index));
+//    self.tabSelected = YES;
+////    [self.pagingTabController setVisibleIndex:index animated:NO];   
+//}
 
-- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
-    NSLog(@"index : %@", @(index));
-    self.tabSelected = YES;
-    [self.pagingTabController setVisibleIndex:index animated:NO];
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC currentIndex:(float)offset {
+//    [self.pagingTabController setVisibleIndex:index animated:NO];
+
+//    [self.pagingTabController.pagingViewController.delegate pagingViewController:nil didUpdateTransitionProgress:offset];
+//    [self.pagingTabController.delegate pagingTabController:self.pagingTabController didUpdateTransitionProgress:offset];
+
 }
+
 
 - (void)dealloc {
     self.scrollViewWrapper.delegate = nil;

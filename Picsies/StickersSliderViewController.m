@@ -13,6 +13,7 @@
 @interface StickersSliderViewController ()<iCarouselDelegate, iCarouselDataSource>
 @property (nonatomic) iCarousel* carousel;
 @property (nonatomic) NSTimer *timer;
+@property (nonatomic) BOOL ignoreChanges;
 @end
 
 @implementation StickersSliderViewController
@@ -33,7 +34,7 @@
     self.carousel.type = iCarouselTypeLinear;
     self.carousel.delegate = self;
     self.carousel.dataSource = self;
-    [self startTimer];
+//    [self startTimer];
 }
 
 #pragma mark - iCarousel
@@ -96,38 +97,28 @@
     }
 }
 
-- (void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate {
-    [self startTimer];
+
+- (void)carouselWillBeginScrollingAnimation:(iCarousel *)carousel {
+    
+//    if (self.ignoreChanges) {
+        if ([self.delegate respondsToSelector:@selector(stickerSliderVC:currentIndex:)]) {
+            [self.delegate stickerSliderVC:self currentIndex:carousel.scrollOffset];
+//        }
+        
+    }
 }
 
-- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
 
-}
-
-- (void)carouselWillBeginDragging:(iCarousel *)carousel {
-    [self stopTimer];
-}
-
-- (void)startTimer {
-    [self stopTimer];
-    [self performSelector:@selector(timerCompleted) withObject:nil afterDelay:6];
-}
-
-- (void)stopTimer {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-}
-
-- (void)timerCompleted {
-    [self scrollToIndex:self.carousel.currentItemIndex + 1];
-}
-
-- (void)scrollToIndex:(NSInteger)index {
-    [self.carousel scrollToItemAtIndex:index animated:YES];
-    [self performSelector:@selector(timerCompleted) withObject:nil afterDelay:6];
+- (void)scrollToOffset:(float)offset withIgnore:(BOOL)ignore {
+    self.ignoreChanges = ignore;
+    [self.carousel scrollToOffset:offset duration:0];
+    
+//    [self.carousel scrollToItemAtIndex:index+1 animated:YES];
+//    [self performSelector:@selector(timerCompleted) withObject:nil afterDelay:6];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index {
-    [self.delegate stickerSliderVC:self selectedAtIndx:index];
+//    [self.delegate stickerSliderVC:self selectedAtIndx:index];
 }
 
 @end
