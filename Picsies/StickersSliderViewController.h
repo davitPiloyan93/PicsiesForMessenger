@@ -16,6 +16,7 @@
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC contentOffset:(CGPoint)offset;
 
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC stoppedScrolling:(BOOL)stoppedScrolling;
 
 @end
 

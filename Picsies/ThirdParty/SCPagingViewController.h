@@ -51,5 +51,7 @@
 
 - (void)setVisibleIndex:(NSUInteger)visibleIndex animated:(BOOL)animated;
 
+- (void)stoppedScrolling;
+
 
 @end

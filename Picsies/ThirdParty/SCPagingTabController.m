@@ -16,7 +16,6 @@
                                      SCPagingViewControllerDelegate,
                                      SCPagingViewControllerDataSoure>
 
-@property (nonatomic) SCPagingViewController* pagingViewController;
 
 @property (nonatomic) NSArray* titles;
 
@@ -145,7 +144,6 @@
 }
 
 - (void)scrollToOffset:(CGPoint)offset {
-    [self.tabBar setProgress:offset.x/self.pagingViewController.scrollView.bounds.size.width fromTapping:NO];
 //    if ([self.delegate respondsToSelector:@selector(pagingTabController:didUpdateTransitionProgress:)]) {
 //        [self.delegate pagingTabController:self didUpdateTransitionProgress:offset];
 //    }

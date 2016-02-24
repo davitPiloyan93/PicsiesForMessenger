@@ -198,12 +198,11 @@
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC contentOffset:(CGPoint)offset {
     [self.pagingTabController scrollToOffset:offset];
-
-//    [self.pagingTabController.pagingViewController.delegate pagingViewController:nil didUpdateTransitionProgress:offset];
-//    [self.pagingTabController.delegate pagingTabController:self.pagingTabController didUpdateTransitionProgress:offset];
-
 }
 
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC stoppedScrolling:(BOOL)stoppedScrolling {
+    [(SCPagingViewController *)self.pagingTabController.pagingViewController stoppedScrolling];
+}
 
 - (void)dealloc {
     self.scrollViewWrapper.delegate = nil;

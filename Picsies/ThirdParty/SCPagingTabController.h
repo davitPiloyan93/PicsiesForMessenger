@@ -7,6 +7,7 @@
 //
 
 #import "SCTabBar.h"
+#import "SCPagingViewController.h"
 
 @class SCPagingTabController;
 
@@ -51,6 +52,8 @@
 @property (nonatomic) NSUInteger selectedTabIndex;
 
 @property (nonatomic, weak) UIViewController* currentController;
+
+@property (nonatomic) SCPagingViewController* pagingViewController;
 
 - (void)setVisibleIndex:(NSUInteger)visibleIndex animated:(BOOL)animated;
 
