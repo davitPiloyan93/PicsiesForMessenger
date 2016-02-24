@@ -7,7 +7,6 @@
 //
 
 #import "StickersSliderViewController.h"
-#import "iCarousel.h"
 #import "UIImageView+WebCache.h"
 
 @interface BannerCell : UICollectionViewCell
@@ -31,8 +30,6 @@
 
 @interface StickersSliderViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic)UICollectionView *collectionView;
-@property (nonatomic) iCarousel* carousel;
-@property (nonatomic) NSTimer *timer;
 
 @end
 
@@ -80,7 +77,6 @@
 }
 
 - (void)scrollToOffset:(float)offset withIgnore:(BOOL)ignore {
-    self.ignoreChanges = ignore;
     [self.collectionView setContentOffset:CGPointMake(offset*self.collectionView.bounds.size.width, self.collectionView.contentOffset.y)];
 }
 

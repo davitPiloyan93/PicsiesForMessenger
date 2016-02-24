@@ -45,7 +45,6 @@
 		C21EA65A1C76FFB4004587F8 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA6591C76FFB4004587F8 /* FBSDKMessengerShareKit.framework */; };
 		C21EA65C1C7703CC004587F8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */; };
 		C41D13B91C772D6B00FDE821 /* StickersSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */; };
-		C41D13BE1C772DB400FDE821 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D13BD1C772DB400FDE821 /* iCarousel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,8 +120,6 @@
 		C21EA65B1C7703CC004587F8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C41D13B71C772D6B00FDE821 /* StickersSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickersSliderViewController.h; sourceTree = "<group>"; };
 		C41D13B81C772D6B00FDE821 /* StickersSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StickersSliderViewController.m; sourceTree = "<group>"; };
-		C41D13BC1C772DB400FDE821 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = ../iCarousel.h; sourceTree = "<group>"; };
-		C41D13BD1C772DB400FDE821 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = ../iCarousel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,8 +183,6 @@
 		84A53D3D1C770C0A006CBF39 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				C41D13BC1C772DB400FDE821 /* iCarousel.h */,
-				C41D13BD1C772DB400FDE821 /* iCarousel.m */,
 				84A53DAB1C77A4BF006CBF39 /* PicsiesPreviewView */,
 				84A53D791C776B19006CBF39 /* SDWebImage */,
 				84A53D3E1C770C0A006CBF39 /* Category */,
@@ -377,7 +372,6 @@
 				84A53DA71C776B19006CBF39 /* UIImage+WebP.m in Sources */,
 				84A53D9C1C776B19006CBF39 /* NSData+ImageContentType.m in Sources */,
 				84A53D271C76FA52006CBF39 /* ViewController.m in Sources */,
-				C41D13BE1C772DB400FDE821 /* iCarousel.m in Sources */,
 				84A53D9F1C776B19006CBF39 /* SDWebImageDecoder.m in Sources */,
 				84A53D651C7724EA006CBF39 /* UIViewController+SCAdditions.m in Sources */,
 				84A53DA41C776B19006CBF39 /* UIButton+WebCache.m in Sources */,

@@ -144,9 +144,7 @@
 }
 
 - (void)scrollToOffset:(CGPoint)offset {
-//    if ([self.delegate respondsToSelector:@selector(pagingTabController:didUpdateTransitionProgress:)]) {
-//        [self.delegate pagingTabController:self didUpdateTransitionProgress:offset];
-//    }
+
     self.pagingViewController.scrollView.contentOffset = offset;
 }
 
