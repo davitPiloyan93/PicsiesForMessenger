@@ -56,6 +56,8 @@
 
 - (id)initWithTabTitles:(NSArray*)titles;
 
+- (void)scrollToOffset:(CGPoint)offset;
+
 - (void)reload;
 
 @end

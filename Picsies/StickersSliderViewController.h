@@ -14,7 +14,7 @@
 
 - (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index;
 
-- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC currentIndex:(float)offset;
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC contentOffset:(CGPoint)offset;
 
 
 @end
@@ -24,6 +24,9 @@
 
 @property (nonatomic, weak) id<StickersSliderDelegate> delegate;
 @property (nonatomic) NSArray *banners;
+
+@property (nonatomic) BOOL ignoreChanges;
+
 
 - (void)scrollToOffset:(float)offset withIgnore:(BOOL)ignore;
 

@@ -26,7 +26,6 @@
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
 @property (nonatomic) NSArray *stickers;
 @property (nonatomic) UIView *noNetworkView;
-@property (nonatomic) int index;
 
 
 
@@ -196,15 +195,9 @@
         cover.center = CGPointMake(cover.center.x, cover.bounds.size.height / 2 + (cover.bounds.size.height - cover.frame.size.height) / 2);
     }
 }
-//
-//- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC selectedAtIndx:(NSUInteger)index {
-//    NSLog(@"index : %@", @(index));
-//    self.tabSelected = YES;
-////    [self.pagingTabController setVisibleIndex:index animated:NO];   
-//}
 
-- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC currentIndex:(float)offset {
-//    [self.pagingTabController setVisibleIndex:index animated:NO];
+- (void)stickerSliderVC:(StickersSliderViewController *)stickerSliderVC contentOffset:(CGPoint)offset {
+    [self.pagingTabController scrollToOffset:offset];
 
 //    [self.pagingTabController.pagingViewController.delegate pagingViewController:nil didUpdateTransitionProgress:offset];
 //    [self.pagingTabController.delegate pagingTabController:self.pagingTabController didUpdateTransitionProgress:offset];

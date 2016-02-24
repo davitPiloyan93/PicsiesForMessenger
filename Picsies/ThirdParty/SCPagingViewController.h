@@ -51,4 +51,5 @@
 
 - (void)setVisibleIndex:(NSUInteger)visibleIndex animated:(BOOL)animated;
 
+
 @end
