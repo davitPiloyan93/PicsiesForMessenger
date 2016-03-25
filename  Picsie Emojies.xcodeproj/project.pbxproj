@@ -49,7 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		84A53D1C1C76FA4F006CBF39 /* Picsies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picsies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A53D1C1C76FA4F006CBF39 /*  Picsie Emojies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = " Picsie Emojies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A53D201C76FA50006CBF39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84A53D221C76FA52006CBF39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84A53D231C76FA52006CBF39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		84A53D1D1C76FA4F006CBF39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84A53D1C1C76FA4F006CBF39 /* Picsies.app */,
+				84A53D1C1C76FA4F006CBF39 /*  Picsie Emojies.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,9 +299,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84A53D1B1C76FA4F006CBF39 /* Picsies */ = {
+		84A53D1B1C76FA4F006CBF39 /*  Picsie Emojies */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84A53D331C76FA52006CBF39 /* Build configuration list for PBXNativeTarget "Picsies" */;
+			buildConfigurationList = 84A53D331C76FA52006CBF39 /* Build configuration list for PBXNativeTarget " Picsie Emojies" */;
 			buildPhases = (
 				84A53D181C76FA4F006CBF39 /* Sources */,
 				84A53D191C76FA4F006CBF39 /* Frameworks */,
@@ -311,9 +311,9 @@
 			);
 			dependencies = (
 			);
-			name = Picsies;
+			name = " Picsie Emojies";
 			productName = Picsies;
-			productReference = 84A53D1C1C76FA4F006CBF39 /* Picsies.app */;
+			productReference = 84A53D1C1C76FA4F006CBF39 /*  Picsie Emojies.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -330,7 +330,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84A53D171C76FA4F006CBF39 /* Build configuration list for PBXProject "Picsies" */;
+			buildConfigurationList = 84A53D171C76FA4F006CBF39 /* Build configuration list for PBXProject " Picsie Emojies" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -343,7 +343,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84A53D1B1C76FA4F006CBF39 /* Picsies */,
+				84A53D1B1C76FA4F006CBF39 /*  Picsie Emojies */,
 			);
 		};
 /* End PBXProject section */
@@ -509,8 +509,8 @@
 				INFOPLIST_FILE = Picsies/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.Picsies;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.picsie;
+				PRODUCT_NAME = " Picsie Emojies";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -527,8 +527,8 @@
 				INFOPLIST_FILE = Picsies/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.Picsies;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.picsies.picsie;
+				PRODUCT_NAME = " Picsie Emojies";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -536,7 +536,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84A53D171C76FA4F006CBF39 /* Build configuration list for PBXProject "Picsies" */ = {
+		84A53D171C76FA4F006CBF39 /* Build configuration list for PBXProject " Picsie Emojies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A53D311C76FA52006CBF39 /* Debug */,
@@ -545,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84A53D331C76FA52006CBF39 /* Build configuration list for PBXNativeTarget "Picsies" */ = {
+		84A53D331C76FA52006CBF39 /* Build configuration list for PBXNativeTarget " Picsie Emojies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84A53D341C76FA52006CBF39 /* Debug */,

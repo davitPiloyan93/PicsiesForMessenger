@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Picsies.xcodeproj">
+      location = "self:/Users/davitpiloyan/Documents/PicsiesForMessenger/ Picsie Emojies.xcodeproj">
    </FileRef>
 </Workspace>
